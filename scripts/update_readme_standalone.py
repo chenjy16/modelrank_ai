@@ -300,7 +300,7 @@ def generate_html_page(df, update_time):
                         <h5 class="mb-0">关于项目</h5>
                     </div>
                     <div class="card-body">
-                        <p>ModelRank AI 是一个自动更新的开源大语言模型排行榜，数据来源于HuggingFace的Open LLM Leaderboard。</p>
+                        <p>ModelRank AI 是一个自动更新的开源大语言模型排行榜，数据来源于HuggingFace。</p>
                         <p>本项目通过GitHub Actions每天自动从HuggingFace获取最新的模型评测数据。</p>
                     </div>
                 </div>
