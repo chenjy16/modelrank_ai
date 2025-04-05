@@ -178,7 +178,7 @@ async def update_readme():
     
     # 添加数据来源说明（如果不存在）
     if "## 数据来源" not in content:
-        content += "\n## 数据来源\n\n数据来自HuggingFace的[Open LLM Leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard)。\n\n"
+        content += "\n## 数据来源\n\n数据来自HuggingFace。\n\n"
     
     # 添加许可证说明（如果不存在）
     if "## 许可证" not in content:
