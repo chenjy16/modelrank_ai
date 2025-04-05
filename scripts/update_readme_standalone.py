@@ -185,6 +185,32 @@ def generate_html_page(df, update_time):
     )
     
     # 创建完整的HTML页面
+    # 使用三引号字符串和 r 前缀来避免 f-string 解析问题
+    js_code = r"""
+    <script>
+        $(document).ready(function() {
+            $('#leaderboard').DataTable({
+                "pageLength": 25,
+                "order": [[0, "asc"]],
+                "language": {
+                    "search": "搜索:",
+                    "lengthMenu": "显示 _MENU_ 条记录",
+                    "info": "显示第 _START_ 至 _END_ 条记录，共 _TOTAL_ 条",
+                    "infoEmpty": "没有记录",
+                    "infoFiltered": "(从 _MAX_ 条记录过滤)",
+                    "paginate": {
+                        "first": "首页",
+                        "last": "末页",
+                        "next": "下一页",
+                        "previous": "上一页"
+                    }
+                }
+            });
+        });
+    </script>
+    """
+    
+    # 然后在 HTML 内容中使用这个变量
     html_content = f"""<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -291,27 +317,7 @@ def generate_html_page(df, update_time):
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#leaderboard').DataTable({
-                "pageLength": 25,
-                "order": [[0, "asc"]],
-                "language": {
-                    "search": "搜索:",
-                    "lengthMenu": "显示 _MENU_ 条记录",
-                    "info": "显示第 _START_ 至 _END_ 条记录，共 _TOTAL_ 条",
-                    "infoEmpty": "没有记录",
-                    "infoFiltered": "(从 _MAX_ 条记录过滤)",
-                    "paginate": {
-                        "first": "首页",
-                        "last": "末页",
-                        "next": "下一页",
-                        "previous": "上一页"
-                    }
-                }
-            });
-        });
-    </script>
+    {js_code}
 </body>
 </html>
 """
