@@ -73,17 +73,7 @@ The leaderboard includes the following main evaluation metrics:
    cd modelrank_ai
    ```
 
-## 数据来源
 
-数据来自HuggingFace
-
-## 许可证
-
-本项目基于MIT许可证开源。
-
-## Data Source
-
-Data is sourced from HuggingFace.
 
 
 ## License
