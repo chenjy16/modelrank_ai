@@ -40,30 +40,30 @@ api = HfApi(token=HF_TOKEN)
 # instead of importing from backend.app.services.leaderboard
 
 async def fetch_leaderboard_data():
-    """从 HuggingFace 获取排行榜数据"""
-    logger.info("正在获取排行榜数据...")
+    """Fetch leaderboard data from HuggingFace"""
+    logger.info("Fetching leaderboard data...")
     
     try:
-        # 禁用进度条
+        # Disable progress bar
         datasets.disable_progress_bar()
         
-        # 加载数据集
+        # Load dataset
         dataset = datasets.load_dataset(CONTENTS_REPO)["train"]
         
-        # 转换为 pandas DataFrame
+        # Convert to pandas DataFrame
         df = dataset.to_pandas()
         
-        # 按平均分数排序
+        # Sort by average score
         df = df.sort_values(by="Average ⬆️", ascending=False)
         
-        logger.info(f"成功获取 {len(df)} 条模型数据")
+        logger.info(f"Successfully retrieved {len(df)} model entries")
         return df
     except Exception as e:
-        logger.error(f"获取数据失败: {str(e)}")
+        logger.error(f"Failed to fetch data: {str(e)}")
         return None
 
 def format_model_name(row):
-    """格式化模型名称，添加链接"""
+    """Format model name with links"""
     model_name = row["Model"]
     full_name = row["fullname"]
     
@@ -73,33 +73,33 @@ def format_model_name(row):
     return f"[{model_name}](https://huggingface.co/{full_name})"
 
 async def generate_markdown_table(df):
-    """生成 Markdown 表格"""
+    """Generate Markdown table"""
     if df is None or len(df) == 0:
-        return "暂无数据"
+        return "No data available"
     
-    # 选择要显示的列
+    # Select columns to display
     columns = [
         "Model", "Average ⬆️", "#Params (B)", 
         "IFEval", "BBH", "MATH Lvl 5", "GPQA", "MUSR", "MMLU-PRO"
     ]
     
-    # 确保所有列都存在
+    # Ensure all columns exist
     for col in columns:
         if col not in df.columns:
-            logger.warning(f"列 {col} 不存在，将被跳过")
+            logger.warning(f"Column {col} does not exist, will be skipped")
             columns.remove(col)
     
-    # 创建一个新的 DataFrame 只包含我们需要的列
+    # Create a new DataFrame with only the columns we need
     display_df = df[columns].copy()
     
-    # 格式化模型名称
+    # Format model names
     display_df["Model"] = df.apply(format_model_name, axis=1)
     
-    # 重命名列以便更好地显示
+    # Rename columns for better display
     column_rename = {
-        "Model": "模型",
-        "Average ⬆️": "平均分数",
-        "#Params (B)": "参数量(B)",
+        "Model": "Model",
+        "Average ⬆️": "Average Score",
+        "#Params (B)": "Parameters(B)",
         "IFEval": "IFEval",
         "BBH": "BBH",
         "MATH Lvl 5": "MATH",
@@ -110,20 +110,20 @@ async def generate_markdown_table(df):
     
     display_df = display_df.rename(columns=column_rename)
     
-    # 限制显示的行数
+    # Limit the number of rows to display
     top_models = display_df.head(20)
     
-    # 生成 Markdown 表格
-    markdown_table = "| 排名 | " + " | ".join(top_models.columns) + " |\n"
+    # Generate Markdown table
+    markdown_table = "| Rank | " + " | ".join(top_models.columns) + " |\n"
     markdown_table += "| --- | " + " | ".join(["---"] * len(top_models.columns)) + " |\n"
     
     for i, (_, row) in enumerate(top_models.iterrows(), 1):
-        # 格式化数值，保留两位小数
+        # Format numbers with appropriate decimal places
         formatted_row = []
         for col, value in row.items():
-            if isinstance(value, (int, float)) and col != "参数量(B)":
+            if isinstance(value, (int, float)) and col != "Parameters(B)":
                 formatted_row.append(f"{value:.2f}")
-            elif col == "参数量(B)" and isinstance(value, (int, float)):
+            elif col == "Parameters(B)" and isinstance(value, (int, float)):
                 formatted_row.append(f"{value:.1f}")
             else:
                 formatted_row.append(str(value))
@@ -133,71 +133,71 @@ async def generate_markdown_table(df):
     return markdown_table
 
 async def update_readme():
-    """更新 README 文件"""
-    logger.info("开始更新 README 文件")
+    """Update README file"""
+    logger.info("Starting README update")
     
-    # 获取排行榜数据
+    # Get leaderboard data
     df = await fetch_leaderboard_data()
     
     if df is None:
-        logger.error("无法获取数据，更新失败")
+        logger.error("Unable to fetch data, update failed")
         return False
     
-    # 生成 Markdown 表格
+    # Generate Markdown table
     table = await generate_markdown_table(df)
     
-    # 读取现有 README
+    # Read existing README
     readme_path = Path(__file__).parent.parent / "README.md"
     if not readme_path.exists():
-        # 如果 README 不存在，创建一个新的
-        content = "# ModelRank AI\n\n这是一个自动更新的开源大语言模型排行榜，数据来源于HuggingFace。\n\n## 项目说明\n\n本项目通过GitHub Actions每天自动从HuggingFace获取最新的模型评测数据，并更新到此README中。\n\n"
+        # If README doesn't exist, create a new one
+        content = "# ModelRank AI\n\nThis is an automatically updated open-source large language model leaderboard with data sourced from HuggingFace.\n\n## Project Description\n\nThis project automatically fetches the latest model evaluation data from HuggingFace daily via GitHub Actions and updates this README.\n\n"
     else:
         with open(readme_path, "r", encoding="utf-8") as f:
             content = f.read()
     
-    # 更新时间戳
+    # Update timestamp
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S UTC")
     
-    # 检查 README 是否已有排行榜部分
-    if "## 🏆 ModelRank AI 排行榜" in content:
-        # 替换现有排行榜部分
-        start_marker = "## 🏆 ModelRank AI 排行榜"
-        end_marker = "## "  # 下一个标题开始
+    # Check if README already has a leaderboard section
+    if "## 🏆 ModelRank AI Leaderboard" in content:
+        # Replace existing leaderboard section
+        start_marker = "## 🏆 ModelRank AI Leaderboard"
+        end_marker = "## "  # Next section starts
         
         start_idx = content.find(start_marker)
         end_idx = content.find(end_marker, start_idx + len(start_marker))
         
-        if end_idx == -1:  # 如果是最后一个部分
+        if end_idx == -1:  # If it's the last section
             end_idx = len(content)
         
-        new_section = f"{start_marker}\n\n*最后更新时间: {now}*\n\n{table}\n\n"
+        new_section = f"{start_marker}\n\n*Last updated: {now}*\n\n{table}\n\n"
         content = content[:start_idx] + new_section + content[end_idx:]
     else:
-        # 添加新的排行榜部分
-        content += f"\n## 🏆 ModelRank AI 排行榜\n\n*最后更新时间: {now}*\n\n{table}\n\n"
+        # Add new leaderboard section
+        content += f"\n## 🏆 ModelRank AI Leaderboard\n\n*Last updated: {now}*\n\n{table}\n\n"
     
-    # 添加数据来源说明（如果不存在）
-    if "## 数据来源" not in content:
-        content += "\n## 数据来源\n\n数据来自HuggingFace。\n\n"
+    # Add data source explanation (if it doesn't exist)
+    if "## Data Source" not in content:
+        content += "\n## Data Source\n\nData is sourced from HuggingFace.\n\n"
     
-    # 添加许可证说明（如果不存在）
-    if "## 许可证" not in content:
-        content += "\n## 许可证\n\n本项目基于MIT许可证开源。\n"
+    # Add license information (if it doesn't exist)
+    if "## License" not in content:
+        content += "\n## License\n\nThis project is open-sourced under the MIT License.\n"
     
-    # 写回 README
+    # Write back to README
     with open(readme_path, "w", encoding="utf-8") as f:
         f.write(content)
     
-    logger.info(f"README 更新成功，时间: {now}")
+    logger.info(f"README updated successfully, time: {now}")
     return True
 
 if __name__ == "__main__":
-    # 检查 HF_TOKEN 是否存在
+    # Check if HF_TOKEN exists
     if not HF_TOKEN:
-        logger.error("未设置 HF_TOKEN 环境变量，请先设置后再运行")
+        logger.error("HF_TOKEN environment variable not set, please set it before running")
         sys.exit(1)
     
-    # 运行主函数
+    # Run main function
     success = asyncio.run(update_readme())
     
     if not success:

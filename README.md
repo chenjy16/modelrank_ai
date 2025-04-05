@@ -1,20 +1,20 @@
 # ModelRank AI 🏆
 
-这是一个自动更新的开源大语言模型排行榜，数据来源于 HuggingFace 。通过本项目，您可以方便地查看和比较各种大语言模型的性能表现。
+This is an automatically updated open-source large language model leaderboard with data sourced from HuggingFace. Through this project, you can easily view and compare the performance of various large language models.
 
-## 项目特点
+## Project Features
 
-- 🔄 **自动更新**：通过 GitHub Actions 每天自动从 HuggingFace 获取最新的模型评测数据
-- 📊 **完整数据**：提供完整的排行榜数据，包括模型名称、参数量、各项评测分数等
-- 📱 **响应式设计**：支持在各种设备上查看排行榜数据
-- 🔍 **搜索和排序**：在完整排行榜页面支持按不同指标搜索和排序
-- 📥 **数据下载**：提供 JSON 和 CSV 格式的数据下载
+- 🔄 **Automatic Updates**: Automatically fetches the latest model evaluation data from HuggingFace daily via GitHub Actions
+- 📊 **Complete Data**: Provides comprehensive leaderboard data, including model names, parameter counts, and various evaluation scores
+- 📱 **Responsive Design**: Supports viewing leaderboard data on various devices
+- 🔍 **Search and Sort**: Supports searching and sorting by different metrics on the complete leaderboard page
+- 📥 **Data Download**: Provides data in JSON and CSV formats for download
 
-## 🏆 ModelRank AI 排行榜
+## 🏆 ModelRank AI Leaderboard
 
-*最后更新时间: 2025-04-05 09:02:03 UTC*
+*Last updated: 2025-04-05 09:02:03 UTC*
 
-| 排名 | 模型 | 平均分数 | 参数量(B) | IFEval | BBH | MATH | GPQA | MUSR | MMLU-PRO |
+| Rank | Model | Average Score | Parameters(B) | IFEval | BBH | MATH | GPQA | MUSR | MMLU-PRO |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | [<a target="_blank" href="https://huggingface.co/MaziyarPanahi/calme-3.2-instruct-78b" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">MaziyarPanahi/calme-3.2-instruct-78b</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/MaziyarPanahi__calme-3.2-instruct-78b-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a>](https://huggingface.co/MaziyarPanahi/calme-3.2-instruct-78b) | 52.08 | 78.0 | 80.63 | 62.61 | 40.33 | 20.36 | 38.53 | 70.03 |
 | 2 | [<a target="_blank" href="https://huggingface.co/MaziyarPanahi/calme-3.1-instruct-78b" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">MaziyarPanahi/calme-3.1-instruct-78b</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/MaziyarPanahi__calme-3.1-instruct-78b-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a>](https://huggingface.co/MaziyarPanahi/calme-3.1-instruct-78b) | 51.29 | 78.0 | 81.36 | 62.41 | 39.27 | 19.46 | 36.50 | 68.72 |
@@ -38,36 +38,36 @@
 | 20 | [<a target="_blank" href="https://huggingface.co/raphgg/test-2.5-72B" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">raphgg/test-2.5-72B</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/raphgg__test-2.5-72B-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a>](https://huggingface.co/raphgg/test-2.5-72B) | 46.74 | 72.7 | 84.37 | 62.15 | 41.09 | 18.57 | 20.52 | 53.74 |
 
 
-## 完整数据
+## Complete Data
 
-完整的排行榜数据可以通过以下方式查看：
+The complete leaderboard data can be viewed through the following methods:
 
-- [在线完整排行榜](https://chenjy16.github.io/modelrank_ai/)
-- [JSON 格式数据](https://chenjy16.github.io/modelrank_ai/leaderboard.json)
-- [CSV 格式数据](https://chenjy16.github.io/modelrank_ai/leaderboard.csv)
+- [Online Complete Leaderboard](https://chenjy16.github.io/modelrank_ai/)
+- [JSON Format Data](https://chenjy16.github.io/modelrank_ai/leaderboard.json)
+- [CSV Format Data](https://chenjy16.github.io/modelrank_ai/leaderboard.csv)
 
-## 评测指标说明
+## Evaluation Metrics Explanation
 
-排行榜包含以下主要评测指标：
+The leaderboard includes the following main evaluation metrics:
 
-- **Average ⬆️**：所有评测的平均分数
-- **IFEval**：指令跟随能力评测
-- **BBH**：大型语言模型行为基准测试
-- **MATH Lvl 5**：数学问题解决能力评测
-- **GPQA**：通用物理问答评测
-- **MUSR**：多步推理评测
-- **MMLU-PRO**：大规模多任务语言理解专业版评测
+- **Average ⬆️**: Average score of all evaluations
+- **IFEval**: Instruction following capability evaluation
+- **BBH**: Big-Bench Hard benchmark for large language models
+- **MATH Lvl 5**: Mathematical problem-solving capability evaluation
+- **GPQA**: General Physics Question Answering evaluation
+- **MUSR**: Multi-step reasoning evaluation
+- **MMLU-PRO**: Massive Multitask Language Understanding Professional version evaluation
 
-## 本地开发
+## Local Development
 
-### 前提条件
+### Prerequisites
 
 - Python 3.10+
-- HuggingFace API 令牌
+- HuggingFace API token
 
-### 安装步骤
+### Installation Steps
 
-1. 克隆仓库
+1. Clone the repository
    ```bash
    git clone https://github.com/chenjy16/modelrank_ai.git
    cd modelrank_ai
