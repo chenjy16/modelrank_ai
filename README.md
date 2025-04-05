@@ -12,7 +12,7 @@ This is an automatically updated open-source large language model leaderboard wi
 
 ## 🏆 ModelRank AI Leaderboard
 
-*Last updated: 2025-04-05 09:02:03 UTC*
+*Last updated: 2025-04-05 12:44:49 UTC*
 
 | Rank | Model | Average Score | Parameters(B) | IFEval | BBH | MATH | GPQA | MUSR | MMLU-PRO |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -80,3 +80,12 @@ The leaderboard includes the following main evaluation metrics:
 ## 许可证
 
 本项目基于MIT许可证开源。
+
+## Data Source
+
+Data is sourced from HuggingFace.
+
+
+## License
+
+This project is open-sourced under the MIT License.
