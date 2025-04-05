@@ -9,12 +9,12 @@ jobs:
   update-readme:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # Add this line to grant write permissions
+      contents: write  # 授予写入权限
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}  # Use the built-in token
+          token: ${{ secrets.GITHUB_TOKEN }}  # 使用内置令牌
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -27,7 +27,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install huggingface_hub datasets pandas python-dotenv tqdm asyncio
 
-      - name: Update README
+      - name: Update README and GitHub Pages
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
@@ -38,5 +38,6 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add README.md
-          git diff --quiet && git diff --staged --quiet || git commit -m "Update leaderboard data"
+          git add docs/  # 添加 docs 目录
+          git diff --quiet && git diff --staged --quiet || git commit -m "Update leaderboard data and GitHub Pages"
           git push

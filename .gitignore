@@ -33,6 +33,8 @@ htmlcov/
 
 # 数据文件
 data/
+# 但不忽略 docs 目录
+!docs/
 
 # 日志
 *.log
