@@ -1,5 +1,6 @@
 from typing import Optional
 from huggingface_hub import HfApi
+# 修正导入路径
 from app.config import HF_TOKEN, API
 from app.core.cache import cache_config
 from app.core.formatting import LogFormatter
@@ -47,4 +48,4 @@ class HuggingFaceService:
         if details:
             stats["Details"] = details
         for line in LogFormatter.tree(stats):
-            logger.info(line) 
+            logger.info(line)

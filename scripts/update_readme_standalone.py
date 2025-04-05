@@ -12,32 +12,23 @@ from dotenv import load_dotenv
 from huggingface_hub import HfApi
 import datasets
 
-# Add project root and backend directories to Python path
-project_root = Path(__file__).parent.parent
-sys.path.append(str(project_root))
-sys.path.append(str(project_root / "backend"))
-
-# Configure logging
+# 配置日志
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
 
-# Load environment variables
+# 加载环境变量
 load_dotenv()
 
-# HuggingFace configuration
+# HuggingFace 配置
 HF_TOKEN = os.environ.get("HF_TOKEN")
 HF_ORGANIZATION = "open-llm-leaderboard"
 CONTENTS_REPO = f"{HF_ORGANIZATION}/contents"
 
-# Initialize HF API
+# 初始化 HF API
 api = HfApi(token=HF_TOKEN)
-
-# Since we're having import issues with the backend services,
-# let's implement the necessary functionality directly in this script
-# instead of importing from backend.app.services.leaderboard
 
 async def fetch_leaderboard_data():
     """从 HuggingFace 获取排行榜数据"""
