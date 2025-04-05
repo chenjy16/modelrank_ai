@@ -308,7 +308,6 @@ def generate_html_page(df, update_time):
         </div>
         
         <div class="footer text-center">
-            <p>数据来源: <a href="https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard" target="_blank">HuggingFace Open LLM Leaderboard</a></p>
             <p>© {datetime.now().year} ModelRank AI - <a href="https://github.com/chenjy16/modelrank_ai/blob/main/LICENSE" target="_blank">MIT License</a></p>
         </div>
     </div>
