@@ -1,42 +1,38 @@
-name: Update ModelRank AI Leaderboard
+name: Update LLM Leaderboard
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # 每天UTC时间0点运行
-  workflow_dispatch:     # 允许手动触发
+    - cron: '0 0 * * *'  # 每天 UTC 时间 00:00 运行
+  workflow_dispatch:  # 允许手动触发
 
 jobs:
   update-readme:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
-      
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.12'
-          
+          python-version: '3.10'
+          cache: 'pip'
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install poetry
-          cd backend
-          poetry install
-          
-      - name: Fetch leaderboard data
+          pip install -r requirements.txt
+
+      - name: Update README
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-          HF_HOME: .cache
-          ENVIRONMENT: production
         run: |
-          # 确保使用正确的路径
-          python -m scripts.update_readme
-          
+          python scripts/update_readme.py
+
       - name: Commit and push if changed
         run: |
-          git config --global user.email "github-actions@github.com"
-          git config --global user.name "GitHub Actions"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add README.md
-          git diff --quiet && git diff --staged --quiet || git commit -m "Update leaderboard data [skip ci]"
+          git diff --quiet && git diff --staged --quiet || git commit -m "Update leaderboard data"
           git push

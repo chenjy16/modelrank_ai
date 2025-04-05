@@ -1,0 +1,7 @@
+huggingface_hub>=0.16.4
+datasets>=2.14.0
+pandas>=2.0.0
+tqdm>=4.66.1
+python-dotenv>=1.0.0
+aiohttp>=3.8.5
+asyncio>=3.4.3
