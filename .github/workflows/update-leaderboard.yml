@@ -8,9 +8,13 @@ on:
 jobs:
   update-readme:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Add this line to grant write permissions
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}  # Use the built-in token
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -21,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install huggingface_hub==0.29.1 datasets pandas python-dotenv tqdm asyncio
+          pip install huggingface_hub datasets pandas python-dotenv tqdm asyncio
 
       - name: Update README
         env:
