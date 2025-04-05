@@ -366,7 +366,7 @@ async def update_readme():
     readme_path = Path(__file__).parent.parent / "README.md"
     if not readme_path.exists():
         # 如果 README 不存在，创建一个新的
-        content = "# ModelRank AI\n\n这是一个自动更新的开源大语言模型排行榜，数据来源于HuggingFace的Open LLM Leaderboard。\n\n## 项目说明\n\n本项目通过GitHub Actions每天自动从HuggingFace获取最新的模型评测数据，并更新到此README中。\n\n"
+        content = "# ModelRank AI\n\n这是一个自动更新的开源大语言模型排行榜，数据来源于HuggingFace。\n\n## 项目说明\n\n本项目通过GitHub Actions每天自动从HuggingFace获取最新的模型评测数据，并更新到此README中。\n\n"
     else:
         with open(readme_path, "r", encoding="utf-8") as f:
             content = f.read()
@@ -399,7 +399,7 @@ async def update_readme():
     
     # 添加数据来源说明（如果不存在）
     if "## 数据来源" not in content:
-        content += "\n## 数据来源\n\n数据来自HuggingFace的[Open LLM Leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard)。\n\n"
+        content += "\n## 数据来源\n\n数据来自HuggingFace。\n\n"
     
     # 添加许可证说明（如果不存在）
     if "## 许可证" not in content:
