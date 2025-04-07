@@ -460,75 +460,76 @@ async def update_readme():
     logger.info(f"README updated successfully, time: {now}")
     return domain_success and True
 
-import re  # 添加 re 模块导入到文件顶部
-
 async def fetch_domain_leaderboard_data(domain):
     """获取特定领域的模型评估数据"""
-    logger.info(f"获取{domain}领域排行榜数据...")
+    logger.info(f"Fetching {domain} domain leaderboard data...")
     
     try:
-        # 定义领域对应的数据集
-        domain_datasets = {
-            "medical": ["medmcqa", "pubmedqa", "mmlu_medical_genetics", "mmlu_clinical_knowledge"],
-            "legal": ["lextreme", "mmlu_jurisprudence", "mmlu_professional_law"],
-            "finance": ["finqa", "mmlu_econometrics", "mmlu_global_economics"]
-        }
-        
-        if domain not in domain_datasets:
-            logger.error(f"未知领域: {domain}")
-            return None
-            
-        datasets_to_fetch = domain_datasets[domain]
-        domain_data = []
-        
         # 获取所有模型数据
         all_models_df = await fetch_leaderboard_data()
         if all_models_df is None:
             return None
-            
+        
         # 创建基础数据框架
         models_info = all_models_df[["fullname", "Model", "#Params (B)"]].copy()
         
-        # 为每个领域数据集获取评分
-        for dataset_name in datasets_to_fetch:
-            try:
-                # 尝试加载数据集
-                dataset_path = f"{HF_ORGANIZATION}/{dataset_name}"
-                dataset = datasets.load_dataset(dataset_path)["train"]
-                
-                # 转换为 pandas DataFrame
-                dataset_df = dataset.to_pandas()
-                
-                # 重命名列以便合并
-                if "model" in dataset_df.columns and "score" in dataset_df.columns:
-                    dataset_df = dataset_df.rename(columns={"model": "fullname", "score": dataset_name})
-                    
-                    # 只保留需要的列
-                    dataset_df = dataset_df[["fullname", dataset_name]]
-                    
-                    # 合并到模型信息中
-                    models_info = pd.merge(models_info, dataset_df, on="fullname", how="left")
-                
-            except Exception as e:
-                logger.error(f"获取 {dataset_name} 数据失败: {str(e)}")
+        # 定义领域对应的评估指标（从主排行榜中选择相关指标）
+        domain_metrics = {
+            "medical": {
+                "MMLU-PRO": 0.7,  # 权重
+                "BBH": 0.3,       # 权重
+            },
+            "legal": {
+                "MMLU-PRO": 0.6,  # 权重
+                "BBH": 0.4,       # 权重
+            },
+            "finance": {
+                "MATH": 0.5,      # 权重
+                "MMLU-PRO": 0.5,  # 权重
+            }
+        }
         
-        # 计算领域平均分
-        score_columns = [col for col in models_info.columns if col in datasets_to_fetch]
-        if score_columns:
-            models_info["domain_average"] = models_info[score_columns].mean(axis=1, skipna=True)
-            
-            # 排序并过滤掉没有任何领域评分的模型
-            models_info = models_info.dropna(subset=["domain_average"])
-            models_info = models_info.sort_values("domain_average", ascending=False)
-            
-            logger.info(f"✅ 成功获取{domain}领域排行榜数据，共 {len(models_info)} 个模型")
+        if domain not in domain_metrics:
+            logger.error(f"Unknown domain: {domain}")
+            return None
+        
+        # 获取该领域的评估指标
+        metrics = domain_metrics[domain]
+        
+        # 计算领域得分
+        domain_score = pd.Series(0, index=models_info.index)
+        valid_metrics = 0
+        
+        for metric, weight in metrics.items():
+            if metric in all_models_df.columns:
+                # 将指标列添加到模型信息中
+                models_info[metric] = all_models_df[metric]
+                # 累加加权得分
+                domain_score += all_models_df[metric].fillna(0) * weight
+                valid_metrics += weight
+                logger.info(f"Using {metric} for {domain} domain with weight {weight}")
+        
+        # 如果没有有效指标，返回None
+        if valid_metrics == 0:
+            logger.warning(f"No valid metrics found for {domain} domain")
+            return None
+        
+        # 计算最终的领域平均分
+        models_info["domain_average"] = domain_score / valid_metrics
+        
+        # 排序并过滤掉没有领域评分的模型
+        models_info = models_info.dropna(subset=["domain_average"])
+        models_info = models_info.sort_values("domain_average", ascending=False)
+        
+        if len(models_info) > 0:
+            logger.info(f"✅ Successfully retrieved {domain} domain leaderboard data, total: {len(models_info)} models")
             return models_info
         else:
-            logger.warning(f"未找到{domain}领域的有效评分数据")
+            logger.warning(f"No valid data found for {domain} domain")
             return None
         
     except Exception as e:
-        logger.error(f"❌ 获取{domain}领域排行榜数据失败: {str(e)}")
+        logger.error(f"❌ Failed to fetch {domain} domain leaderboard data: {str(e)}")
         return None
 
 async def generate_domain_markdown_table(df, domain, limit=20):
@@ -821,7 +822,7 @@ async def update_readme_with_domain(readme_path, domain, domain_table):
             "finance": "💰 Finance Domain Leaderboard"
         }
         
-        domain_section_start = f"## {domain_titles.get(domain, f'专业领域模型排行榜: {domain}')}"
+        domain_section_start = f"## {domain_titles.get(domain, f'Domain Leaderboard: {domain}')}"
         
         # 查找下一个章节的开始位置
         next_section_pattern = r"## [^#]"
@@ -858,34 +859,34 @@ async def update_readme_with_domain(readme_path, domain, domain_table):
         with open(readme_path, "w", encoding="utf-8") as f:
             f.write(content)
         
-        logger.info(f"✅ 成功更新 README.md 文件中的{domain}领域排行榜部分")
+        logger.info(f"✅ Successfully updated {domain} domain leaderboard in README.md")
         return True
         
     except Exception as e:
-        logger.error(f"❌ 更新 README.md 文件中的{domain}领域排行榜部分失败: {str(e)}")
+        logger.error(f"❌ Failed to update {domain} domain leaderboard in README.md: {str(e)}")
         return False
 
 def save_domain_data_files(df, domain, docs_dir):
     """保存专业领域排行榜数据文件"""
     try:
         if df is None or len(df) == 0:
-            logger.warning(f"没有{domain}领域的数据可供导出")
+            logger.warning(f"No data available for {domain} domain export")
             return False
             
         # 导出为 JSON
         json_path = docs_dir / f"{domain}_leaderboard.json"
         df.to_json(json_path, orient="records", force_ascii=False, indent=2)
-        logger.info(f"JSON数据已保存到: {json_path}")
+        logger.info(f"JSON data saved to: {json_path}")
         
         # 导出为 CSV
         csv_path = docs_dir / f"{domain}_leaderboard.csv"
         df.to_csv(csv_path, index=False)
-        logger.info(f"CSV数据已保存到: {csv_path}")
+        logger.info(f"CSV data saved to: {csv_path}")
         
         return True
         
     except Exception as e:
-        logger.error(f"❌ 保存{domain}领域排行榜数据文件失败: {str(e)}")
+        logger.error(f"❌ Failed to save {domain} domain leaderboard data files: {str(e)}")
         return False
 
 
@@ -894,13 +895,13 @@ async def main():
     try:
         success = await update_readme()
         if success:
-            logger.info("✅ 排行榜更新成功")
+            logger.info("✅ Leaderboard update successful")
             sys.exit(0)
         else:
-            logger.error("❌ 排行榜更新失败")
+            logger.error("❌ Leaderboard update failed")
             sys.exit(1)
     except Exception as e:
-        logger.error(f"❌ 发生错误: {str(e)}")
+        logger.error(f"❌ Error occurred: {str(e)}")
         sys.exit(1)
 
 if __name__ == "__main__":
