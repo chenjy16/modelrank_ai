@@ -40,13 +40,6 @@ This is an automatically updated open-source large language model leaderboard wi
 
 [View Complete Online Leaderboard](https://chenjy16.github.io/modelrank_ai/)
 
-## Domain-Specific Leaderboards
-
-Domain-specific model leaderboards can be accessed via the following links:
-
-- [Medical Domain Leaderboard](https://chenjy16.github.io/modelrank_ai/medical_leaderboard.html)
-- [Legal Domain Leaderboard](https://chenjy16.github.io/modelrank_ai/legal_leaderboard.html)
-- [Finance Domain Leaderboard](https://chenjy16.github.io/modelrank_ai/finance_leaderboard.html)
 
 ## 🏥 Medical Domain Leaderboard
 
@@ -138,16 +131,6 @@ The leaderboard includes the following main evaluation metrics:
 This project is open-sourced under the MIT License.
 
 
-
-
-
-## 🌐 Domain-Specific Leaderboards
-
-Explore leaderboards focused on specific professional areas:
-
-- [🏥 Medical Domain Leaderboard](https://chenjy16.github.io/modelrank_ai/medical_leaderboard.html)
-- [⚖️ Legal Domain Leaderboard](https://chenjy16.github.io/modelrank_ai/legal_leaderboard.html)
-- [💰 Finance Domain Leaderboard](https://chenjy16.github.io/modelrank_ai/finance_leaderboard.html)
 
 ## Data Source
 

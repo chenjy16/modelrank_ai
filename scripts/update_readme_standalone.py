@@ -502,34 +502,8 @@ async def update_readme():
             logger.info("Main leaderboard section not found, appending to README.")
             content += f"\n{new_section_main}" # Append if not found
 
-        # --- Ensure Domain-Specific Links Section ---
-        domain_links_title = "🌐 Domain-Specific Leaderboards"
-        start_marker_domain_links = f"## {domain_links_title}"
-        end_marker_domain_links = "\n## "
-        domain_links_content = (
-            f"{start_marker_domain_links}\n\n"
-            "Explore leaderboards focused on specific professional areas:\n\n"
-            "- [🏥 Medical Domain Leaderboard](https://chenjy16.github.io/modelrank_ai/medical_leaderboard.html)\n"
-            "- [⚖️ Legal Domain Leaderboard](https://chenjy16.github.io/modelrank_ai/legal_leaderboard.html)\n"
-            "- [💰 Finance Domain Leaderboard](https://chenjy16.github.io/modelrank_ai/finance_leaderboard.html)\n"
-        )
 
-        start_idx_domain_links = content.find(start_marker_domain_links)
-        if start_idx_domain_links == -1:
-             logger.info("Domain-Specific Links section not found, adding it.")
-             # Try inserting before "Data Source" or "License", otherwise append
-             insert_before = ["## Data Source", "## License"]
-             insert_pos = -1
-             for marker in insert_before:
-                 pos = content.find(marker)
-                 if pos != -1:
-                     insert_pos = pos
-                     break
-             if insert_pos != -1:
-                 content = content[:insert_pos] + f"\n{domain_links_content}\n" + content[insert_pos:]
-             else:
-                 content += f"\n{domain_links_content}\n"
-        # No replacement needed for this section, just ensure it exists
+  
 
         # --- Ensure Other Sections (Data Source, License, etc.) ---
         sections_to_ensure = {
