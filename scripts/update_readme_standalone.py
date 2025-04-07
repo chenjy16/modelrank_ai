@@ -3,11 +3,15 @@
 
 import os
 import sys
+import json
 import logging
 import asyncio
+import pandas as pd
+import re  # 添加 re 模块导入
 from pathlib import Path
 from datetime import datetime
-import pandas as pd
+import re  # 添加 re 模块导入
+
 from dotenv import load_dotenv
 from huggingface_hub import HfApi
 import datasets
@@ -137,38 +141,54 @@ async def generate_markdown_table(df, limit=20):
     
     return markdown_table
 
-def generate_html_page(df, update_time):
-    """Generate complete HTML page"""
-    # Create HTML version of DataFrame
+def generate_domain_html_page(df, domain, update_time):
+    """生成专业领域排行榜 HTML 页面"""
+    if df is None or len(df) == 0:
+        return f"<p>No data available for {domain} domain</p>"
+    
+    # 创建 HTML 版本的 DataFrame
     html_df = df.copy()
     
-    # Add rank column
+    # 添加排名列
     html_df.insert(0, 'Rank', range(1, len(html_df) + 1))
     
-    # Format model names as HTML links
+    # 格式化模型名称为 HTML 链接
     html_df["Model"] = html_df.apply(format_model_name_html, axis=1)
     
-    # Rename columns
-    column_rename = {
-        "Model": "Model",
-        "Average ⬆️": "Average Score",
-        "#Params (B)": "Parameters(B)",
-        "IFEval": "IFEval",
-        "BBH": "BBH",
-        "MATH Lvl 5": "MATH",
-        "GPQA": "GPQA",
-        "MUSR": "MUSR",
-        "MMLU-PRO": "MMLU-PRO"
-    }
+    # 获取数据集列名
+    dataset_columns = [col for col in df.columns if col not in ["fullname", "Model", "#Params (B)", "domain_average"]]
     
-    # Select columns to display
-    display_columns = ['Rank'] + list(column_rename.keys())
+    # 选择要显示的列
+    display_columns = ['Rank', 'Model', 'domain_average', '#Params (B)'] + dataset_columns
     display_df = html_df[display_columns].copy()
     
-    # Rename columns
+    # 重命名列
+    column_rename = {
+        "Model": "Model",
+        "domain_average": "Average Score",
+        "#Params (B)": "Parameters(B)"
+    }
+    
+    # 添加数据集列的重命名
+    dataset_display_names = {
+        "medmcqa": "MedMCQA",
+        "pubmedqa": "PubMedQA",
+        "mmlu_medical_genetics": "MMLU-Medical",
+        "mmlu_clinical_knowledge": "MMLU-Clinical",
+        "lextreme": "LexTreme",
+        "mmlu_jurisprudence": "MMLU-Law",
+        "mmlu_professional_law": "MMLU-Prof Law",
+        "finqa": "FinQA",
+        "mmlu_econometrics": "MMLU-Econometrics",
+        "mmlu_global_economics": "MMLU-Economics"
+    }
+    
+    for dataset in dataset_columns:
+        column_rename[dataset] = dataset_display_names.get(dataset, dataset.capitalize())
+    
     display_df = display_df.rename(columns=column_rename)
     
-    # Format numeric columns
+    # 格式化数字列
     for col in display_df.columns:
         if col not in ['Rank', 'Model']:
             display_df[col] = display_df[col].apply(
@@ -176,7 +196,7 @@ def generate_html_page(df, update_time):
                           f"{x:.1f}" if col == "Parameters(B)" and isinstance(x, (int, float)) else x
             )
     
-    # Generate HTML table
+    # 生成 HTML 表格
     html_table = display_df.to_html(
         index=False,
         escape=False,
@@ -184,8 +204,15 @@ def generate_html_page(df, update_time):
         table_id="leaderboard"
     )
     
-    # Create complete HTML page
-    # Using triple quotes and r prefix to avoid f-string parsing issues
+    # 获取领域显示名称
+    domain_display_names = {
+        "medical": "Medical",
+        "legal": "Legal",
+        "finance": "Finance"
+    }
+    domain_display = domain_display_names.get(domain, domain.capitalize())
+    
+    # 创建完整的 HTML 页面
     js_code = r"""
     <script>
         $(document).ready(function() {
@@ -210,13 +237,13 @@ def generate_html_page(df, update_time):
     </script>
     """
     
-    # Then use this variable in the HTML content
+    # 使用这个变量在 HTML 内容中
     html_content = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ModelRank AI - Large Language Model Leaderboard</title>
+    <title>ModelRank AI - {domain_display} Domain Leaderboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
     <style>
@@ -250,7 +277,7 @@ def generate_html_page(df, update_time):
     <div class="container">
         <div class="row mb-4">
             <div class="col-md-8">
-                <h1>🏆 ModelRank AI - Large Language Model Leaderboard</h1>
+                <h1>🏆 ModelRank AI - {domain_display} Domain Leaderboard</h1>
                 <p class="text-muted">Last updated: {update_time}</p>
             </div>
             <div class="col-md-4 text-end">
@@ -267,7 +294,7 @@ def generate_html_page(df, update_time):
             <div class="card-header bg-light">
                 <div class="row">
                     <div class="col">
-                        <h5 class="mb-0">Leaderboard Data</h5>
+                        <h5 class="mb-0">{domain_display} Domain Leaderboard</h5>
                     </div>
                     <div class="col-auto">
                         <span class="badge bg-primary">Total: {len(display_df)} models</span>
@@ -289,19 +316,22 @@ def generate_html_page(df, update_time):
                     </div>
                     <div class="card-body">
                         <p>You can download the complete data via the following links:</p>
-                        <a href="leaderboard.json" class="btn btn-outline-primary me-2">JSON Format</a>
-                        <a href="leaderboard.csv" class="btn btn-outline-primary">CSV Format</a>
+                        <a href="{domain}_leaderboard.json" class="btn btn-outline-primary me-2">JSON Format</a>
+                        <a href="{domain}_leaderboard.csv" class="btn btn-outline-primary">CSV Format</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header bg-light">
-                        <h5 class="mb-0">About the Project</h5>
+                        <h5 class="mb-0">Other Leaderboards</h5>
                     </div>
                     <div class="card-body">
-                        <p>ModelRank AI is an automatically updated open-source large language model leaderboard with data sourced from HuggingFace.</p>
-                        <p>This project automatically fetches the latest model evaluation data from HuggingFace daily via GitHub Actions.</p>
+                        <p>View other leaderboards:</p>
+                        <a href="index.html" class="btn btn-outline-primary me-2">Main Leaderboard</a>
+                        {"<a href=\"medical_leaderboard.html\" class=\"btn btn-outline-primary me-2\">Medical Domain</a>" if domain != "medical" else ""}
+                        {"<a href=\"legal_leaderboard.html\" class=\"btn btn-outline-primary me-2\">Legal Domain</a>" if domain != "legal" else ""}
+                        {"<a href=\"finance_leaderboard.html\" class=\"btn btn-outline-primary\">Finance Domain</a>" if domain != "finance" else ""}
                     </div>
                 </div>
             </div>
@@ -389,12 +419,11 @@ async def update_readme():
         content += f"\n## 🏆 ModelRank AI Leaderboard\n\n*Last updated: {now}*\n\n{table}\n\n"
     
     # 检查并替换专业领域排行榜部分
-    domain_section_zh = "## 专业领域模型排行榜"
     domain_section_en = "## Domain-Specific Leaderboards"
     
     # 如果存在中文版本，替换为英文版本
-    if domain_section_zh in content:
-        start_idx = content.find(domain_section_zh)
+    if domain_section_en in content:
+        start_idx = content.find(domain_section_en)
         next_section_match = re.search(r"## [^#]", content[start_idx:])
         if next_section_match:
             end_idx = start_idx + next_section_match.start()
@@ -692,9 +721,8 @@ def generate_domain_html_page(df, domain, update_time):
     for col in display_df.columns:
         if col not in ['Rank', 'Model']:
             display_df[col] = display_df[col].apply(
-                lambda x: f"{x:.2f}" if isinstance(x, (int, float)) and not pd.isna(x) and col != "Parameters(B)" else 
-                          f"{x:.1f}" if col == "Parameters(B)" and isinstance(x, (int, float)) and not pd.isna(x) else 
-                          "-" if pd.isna(x) else x
+                lambda x: f"{x:.2f}" if isinstance(x, (int, float)) and col != "Parameters(B)" else 
+                          f"{x:.1f}" if col == "Parameters(B)" and isinstance(x, (int, float)) else x
             )
     
     # 生成 HTML 表格
@@ -702,25 +730,49 @@ def generate_domain_html_page(df, domain, update_time):
         index=False,
         escape=False,
         classes="table table-striped table-hover table-bordered",
-        table_id=f"{domain}_leaderboard",
-        na_rep="-"
+        table_id="leaderboard"
     )
     
-    # 创建完整的 HTML 页面
-    domain_titles = {
-        "medical": "Medical Domain",
-        "legal": "Legal Domain",
-        "finance": "Finance Domain"
+    # 获取领域显示名称
+    domain_display_names = {
+        "medical": "Medical",
+        "legal": "Legal",
+        "finance": "Finance"
     }
+    domain_display = domain_display_names.get(domain, domain.capitalize())
     
-    domain_title = domain_titles.get(domain, domain)
+    # 创建完整的 HTML 页面
+    js_code = r"""
+    <script>
+        $(document).ready(function() {
+            $('#leaderboard').DataTable({
+                "pageLength": 25,
+                "order": [[0, "asc"]],
+                "language": {
+                    "search": "Search:",
+                    "lengthMenu": "Show _MENU_ entries",
+                    "info": "Showing _START_ to _END_ of _TOTAL_ entries",
+                    "infoEmpty": "No entries available",
+                    "infoFiltered": "(filtered from _MAX_ total entries)",
+                    "paginate": {
+                        "first": "First",
+                        "last": "Last",
+                        "next": "Next",
+                        "previous": "Previous"
+                    }
+                }
+            });
+        });
+    </script>
+    """
     
+    # 使用这个变量在 HTML 内容中
     html_content = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ModelRank AI - {domain_title} Leaderboard</title>
+    <title>ModelRank AI - {domain_display} Domain Leaderboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
     <style>
@@ -754,7 +806,7 @@ def generate_domain_html_page(df, domain, update_time):
     <div class="container">
         <div class="row mb-4">
             <div class="col-md-8">
-                <h1>🏆 ModelRank AI - {domain_title} Leaderboard</h1>
+                <h1>🏆 ModelRank AI - {domain_display} Domain Leaderboard</h1>
                 <p class="text-muted">Last updated: {update_time}</p>
             </div>
             <div class="col-md-4 text-end">
@@ -772,7 +824,7 @@ def generate_domain_html_page(df, domain, update_time):
             <div class="card-header bg-light">
                 <div class="row">
                     <div class="col">
-                        <h5 class="mb-0">{domain_title} Leaderboard Data</h5>
+                        <h5 class="mb-0">{domain_display} Domain Leaderboard</h5>
                     </div>
                     <div class="col-auto">
                         <span class="badge bg-primary">Total: {len(display_df)} models</span>
@@ -802,11 +854,14 @@ def generate_domain_html_page(df, domain, update_time):
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header bg-light">
-                        <h5 class="mb-0">About the Project</h5>
+                        <h5 class="mb-0">Other Leaderboards</h5>
                     </div>
                     <div class="card-body">
-                        <p>ModelRank AI is an automatically updated open-source large language model leaderboard with data sourced from HuggingFace.</p>
-                        <p>This project automatically fetches the latest model evaluation data from HuggingFace daily via GitHub Actions.</p>
+                        <p>View other leaderboards:</p>
+                        <a href="index.html" class="btn btn-outline-primary me-2">Main Leaderboard</a>
+                        {"<a href=\"medical_leaderboard.html\" class=\"btn btn-outline-primary me-2\">Medical Domain</a>" if domain != "medical" else ""}
+                        {"<a href=\"legal_leaderboard.html\" class=\"btn btn-outline-primary me-2\">Legal Domain</a>" if domain != "legal" else ""}
+                        {"<a href=\"finance_leaderboard.html\" class=\"btn btn-outline-primary\">Finance Domain</a>" if domain != "finance" else ""}
                     </div>
                 </div>
             </div>
@@ -821,111 +876,89 @@ def generate_domain_html_page(df, domain, update_time):
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-    <script>
-        $(document).ready(function() {{
-            $('#{domain}_leaderboard').DataTable({{
-                "pageLength": 25,
-                "order": [[0, "asc"]],
-                "language": {{
-                    "search": "Search:",
-                    "lengthMenu": "Show _MENU_ entries",
-                    "info": "Showing _START_ to _END_ of _TOTAL_ entries",
-                    "infoEmpty": "No entries available",
-                    "infoFiltered": "(filtered from _MAX_ total entries)",
-                    "paginate": {{
-                        "first": "First",
-                        "last": "Last",
-                        "next": "Next",
-                        "previous": "Previous"
-                    }}
-                }}
-            }});
-        }});
-    </script>
+    {js_code}
 </body>
 </html>
 """
     return html_content
 
-async def update_readme_with_domain(readme_path, domain, domain_table):
-    """更新 README.md 文件中的专业领域排行榜部分"""
+async def update_readme_with_domain(readme_path, domain, table):
+    """更新 README 中的专业领域排行榜部分"""
     try:
-        # 读取现有的 README.md 文件
+        # 读取现有 README
         with open(readme_path, "r", encoding="utf-8") as f:
             content = f.read()
         
-        # 定义领域标题映射 (修改为英文)
+        # 定义领域标题映射
         domain_titles = {
             "medical": "🏥 Medical Domain Leaderboard",
             "legal": "⚖️ Legal Domain Leaderboard",
             "finance": "💰 Finance Domain Leaderboard"
         }
         
-        domain_section_start = f"## {domain_titles.get(domain, f'Domain Leaderboard: {domain}')}"
+        # 获取当前时间
+        now = datetime.now().strftime("%Y-%m-%d %H:%M:%S UTC")
         
-        # 查找下一个章节的开始位置
-        next_section_pattern = r"## [^#]"
+        # 检查是否已存在该领域的排行榜
+        domain_title = domain_titles.get(domain, f"{domain.capitalize()} Domain Leaderboard")
+        domain_section = f"## {domain_title}"
         
-        if domain_section_start in content:
-            # 如果已经存在，则替换该部分
-            start_idx = content.find(domain_section_start)
+        if domain_section in content:
+            # 替换现有领域排行榜
+            start_idx = content.find(domain_section)
+            next_section_match = re.search(r"## [^#]", content[start_idx + len(domain_section):])
             
-            # 查找下一个章节的开始
-            matches = list(re.finditer(next_section_pattern, content[start_idx + len(domain_section_start):]))
-            if matches:
-                end_idx = start_idx + len(domain_section_start) + matches[0].start()
+            if next_section_match:
+                end_idx = start_idx + len(domain_section) + next_section_match.start()
             else:
                 end_idx = len(content)
             
-            now = datetime.now().strftime("%Y-%m-%d %H:%M:%S UTC")
-            new_section = f"{domain_section_start}\n\n*Last updated: {now}*\n\n{domain_table}\n\n"
+            new_section = f"{domain_section}\n\n*Last updated: {now}*\n\n{table}\n\n"
             content = content[:start_idx] + new_section + content[end_idx:]
         else:
-            # 如果不存在，则在主排行榜后面添加
-            complete_data_section = "## Complete Data"
-            complete_data_idx = content.find(complete_data_section)
-            
-            if complete_data_idx != -1:
-                now = datetime.now().strftime("%Y-%m-%d %H:%M:%S UTC")
-                new_section = f"{domain_section_start}\n\n*Last updated: {now}*\n\n{domain_table}\n\n"
-                content = content[:complete_data_idx] + new_section + content[complete_data_idx:]
+            # 添加新的领域排行榜（在主排行榜之后）
+            main_leaderboard = "## 🏆 ModelRank AI Leaderboard"
+            if main_leaderboard in content:
+                main_idx = content.find(main_leaderboard)
+                next_section_match = re.search(r"## [^#]", content[main_idx + len(main_leaderboard):])
+                
+                if next_section_match:
+                    insert_idx = main_idx + len(main_leaderboard) + next_section_match.start()
+                    new_section = f"\n{domain_section}\n\n*Last updated: {now}*\n\n{table}\n\n"
+                    content = content[:insert_idx] + new_section + content[insert_idx:]
+                else:
+                    # 如果主排行榜是最后一个部分，则添加到末尾
+                    content += f"\n{domain_section}\n\n*Last updated: {now}*\n\n{table}\n\n"
             else:
-                # 如果找不到 Complete Data 部分，则添加到文件末尾
-                now = datetime.now().strftime("%Y-%m-%d %H:%M:%S UTC")
-                content += f"\n\n{domain_section_start}\n\n*Last updated: {now}*\n\n{domain_table}\n\n"
+                # 如果没有主排行榜，添加到末尾
+                content += f"\n{domain_section}\n\n*Last updated: {now}*\n\n{table}\n\n"
         
-        # 写回 README.md 文件
+        # 写回 README
         with open(readme_path, "w", encoding="utf-8") as f:
             f.write(content)
         
         logger.info(f"✅ Successfully updated {domain} domain leaderboard in README.md")
         return True
-        
     except Exception as e:
         logger.error(f"❌ Failed to update {domain} domain leaderboard in README.md: {str(e)}")
         return False
 
 def save_domain_data_files(df, domain, docs_dir):
-    """保存专业领域排行榜数据文件"""
+    """保存领域数据文件（JSON 和 CSV）"""
     try:
-        if df is None or len(df) == 0:
-            logger.warning(f"No data available for {domain} domain export")
-            return False
-            
-        # 导出为 JSON
+        # 保存 JSON 数据
         json_path = docs_dir / f"{domain}_leaderboard.json"
         df.to_json(json_path, orient="records", force_ascii=False, indent=2)
         logger.info(f"JSON data saved to: {json_path}")
         
-        # 导出为 CSV
+        # 保存 CSV 数据
         csv_path = docs_dir / f"{domain}_leaderboard.csv"
         df.to_csv(csv_path, index=False)
         logger.info(f"CSV data saved to: {csv_path}")
         
         return True
-        
     except Exception as e:
-        logger.error(f"❌ Failed to save {domain} domain leaderboard data files: {str(e)}")
+        logger.error(f"❌ Failed to save {domain} domain data files: {str(e)}")
         return False
 
 

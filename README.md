@@ -40,7 +40,7 @@ This is an automatically updated open-source large language model leaderboard wi
 
 ## Domain-Specific Leaderboards
 
-专业领域模型排行榜可通过以下链接访问：
+Domain-specific model leaderboards can be accessed via the following links:
 
 - [Medical Domain Leaderboard](https://chenjy16.github.io/modelrank_ai/medical_leaderboard.html)
 - [Legal Domain Leaderboard](https://chenjy16.github.io/modelrank_ai/legal_leaderboard.html)
