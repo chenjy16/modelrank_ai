@@ -462,6 +462,41 @@ async def update_readme():
         f.write(content)
     
     logger.info(f"README updated successfully, time: {now}")
+    
+    # 初始化 domain_success 变量
+    domain_success = True
+    
+    # 处理专业领域排行榜
+    for domain in ["medical", "legal", "finance"]:
+        try:
+            # 获取领域数据
+            domain_df = await fetch_domain_leaderboard_data(domain)
+            
+            if domain_df is not None and len(domain_df) > 0:
+                # 生成领域 Markdown 表格
+                domain_table = await generate_domain_markdown_table(domain_df, domain)
+                
+                # 更新 README 中的领域表格
+                domain_success = await update_readme_with_domain(readme_path, domain, domain_table) and domain_success
+                
+                # 生成领域 HTML 页面
+                domain_html = generate_domain_html_page(domain_df, domain, now)
+                
+                # 保存领域 HTML 页面
+                domain_html_path = docs_dir / f"{domain}_leaderboard.html"
+                with open(domain_html_path, "w", encoding="utf-8") as f:
+                    f.write(domain_html)
+                logger.info(f"Domain HTML page saved to: {domain_html_path}")
+                
+                # 保存领域数据文件
+                domain_success = save_domain_data_files(domain_df, domain, docs_dir) and domain_success
+            else:
+                logger.warning(f"No data available for {domain} domain")
+                domain_success = False
+        except Exception as e:
+            logger.error(f"Error processing {domain} domain: {str(e)}")
+            domain_success = False
+    
     return domain_success and True
 
 async def fetch_domain_leaderboard_data(domain):
