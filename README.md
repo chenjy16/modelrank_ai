@@ -12,7 +12,7 @@ This is an automatically updated open-source large language model leaderboard wi
 
 ## 🏆 ModelRank AI Leaderboard
 
-*Last updated: 2025-04-07 01:03:59 UTC*
+*Last updated: 2025-04-07 04:10:15 UTC*
 
 | Rank | Model | Average Score | Parameters(B) | IFEval | BBH | MATH | GPQA | MUSR | MMLU-PRO |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -37,6 +37,15 @@ This is an automatically updated open-source large language model leaderboard wi
 | 19 | [<a target="_blank" href="https://huggingface.co/maldv/Awqward2.5-32B-Instruct" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">maldv/Awqward2.5-32B-Instruct</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/maldv__Awqward2.5-32B-Instruct-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a>](https://huggingface.co/maldv/Awqward2.5-32B-Instruct) | 46.75 | 32.8 | 82.55 | 57.21 | 62.31 | 12.08 | 13.87 | 52.48 |
 | 20 | [<a target="_blank" href="https://huggingface.co/raphgg/test-2.5-72B" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">raphgg/test-2.5-72B</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/raphgg__test-2.5-72B-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a>](https://huggingface.co/raphgg/test-2.5-72B) | 46.74 | 72.7 | 84.37 | 62.15 | 41.09 | 18.57 | 20.52 | 53.74 |
 
+
+
+## Domain-Specific Leaderboards
+
+专业领域模型排行榜可通过以下链接访问：
+
+- [医疗领域模型排行榜](https://chenjy16.github.io/modelrank_ai/medical_leaderboard.html)
+- [法律领域模型排行榜](https://chenjy16.github.io/modelrank_ai/legal_leaderboard.html)
+- [金融领域模型排行榜](https://chenjy16.github.io/modelrank_ai/finance_leaderboard.html)
 
 ## Complete Data
 
