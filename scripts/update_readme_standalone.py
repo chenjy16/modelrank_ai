@@ -388,47 +388,34 @@ async def update_readme():
         # Add new leaderboard section
         content += f"\n## 🏆 ModelRank AI Leaderboard\n\n*Last updated: {now}*\n\n{table}\n\n"
     
-    # 添加专业领域排行榜
-    domains = ["medical", "legal", "finance"]
-    domain_success = True
+    # 检查并替换专业领域排行榜部分
+    domain_section_zh = "## 专业领域模型排行榜"
+    domain_section_en = "## Domain-Specific Leaderboards"
     
-    for domain in domains:
-        try:
-            # 获取领域排行榜数据
-            domain_df = await fetch_domain_leaderboard_data(domain)
-            
-            if domain_df is not None and len(domain_df) > 0:
-                # 生成领域排行榜 Markdown 表格
-                domain_table = await generate_domain_markdown_table(domain_df, domain)
-                
-                # 更新 README.md 中的领域排行榜部分
-                update_success = await update_readme_with_domain(readme_path, domain, domain_table)
-                
-                # 生成领域排行榜 HTML 页面
-                domain_html = generate_domain_html_page(domain_df, domain, now)
-                domain_html_path = docs_dir / f"{domain}_leaderboard.html"
-                with open(domain_html_path, "w", encoding="utf-8") as f:
-                    f.write(domain_html)
-                logger.info(f"{domain}领域HTML页面已保存到: {domain_html_path}")
-                
-                # 保存领域排行榜数据文件
-                save_domain_data_files(domain_df, domain, docs_dir)
-                
-                if not update_success:
-                    domain_success = False
-            else:
-                logger.warning(f"跳过{domain}领域排行榜更新，因为没有找到有效数据")
-        except Exception as e:
-            logger.error(f"处理{domain}领域排行榜时出错: {str(e)}")
-            domain_success = False
+    # 如果存在中文版本，替换为英文版本
+    if domain_section_zh in content:
+        start_idx = content.find(domain_section_zh)
+        next_section_match = re.search(r"## [^#]", content[start_idx:])
+        if next_section_match:
+            end_idx = start_idx + next_section_match.start()
+        else:
+            end_idx = len(content)
+        
+        domain_links = f"{domain_section_en}\n\n"
+        domain_links += "Domain-specific model leaderboards can be accessed via the following links:\n\n"
+        domain_links += "- [Medical Domain Leaderboard](https://chenjy16.github.io/modelrank_ai/medical_leaderboard.html)\n"
+        domain_links += "- [Legal Domain Leaderboard](https://chenjy16.github.io/modelrank_ai/legal_leaderboard.html)\n"
+        domain_links += "- [Finance Domain Leaderboard](https://chenjy16.github.io/modelrank_ai/finance_leaderboard.html)\n\n"
+        
+        content = content[:start_idx] + domain_links + content[end_idx:]
     
-    # 添加专业领域排行榜链接
-    if "## Domain-Specific Leaderboards" not in content:
-        domain_links = "\n## Domain-Specific Leaderboards\n\n"
-        domain_links += "专业领域模型排行榜可通过以下链接访问：\n\n"
-        domain_links += "- [医疗领域模型排行榜](https://chenjy16.github.io/modelrank_ai/medical_leaderboard.html)\n"
-        domain_links += "- [法律领域模型排行榜](https://chenjy16.github.io/modelrank_ai/legal_leaderboard.html)\n"
-        domain_links += "- [金融领域模型排行榜](https://chenjy16.github.io/modelrank_ai/finance_leaderboard.html)\n\n"
+    # 如果不存在任何版本，添加英文版本
+    elif domain_section_en not in content:
+        domain_links = f"\n{domain_section_en}\n\n"
+        domain_links += "Domain-specific model leaderboards can be accessed via the following links:\n\n"
+        domain_links += "- [Medical Domain Leaderboard](https://chenjy16.github.io/modelrank_ai/medical_leaderboard.html)\n"
+        domain_links += "- [Legal Domain Leaderboard](https://chenjy16.github.io/modelrank_ai/legal_leaderboard.html)\n"
+        domain_links += "- [Finance Domain Leaderboard](https://chenjy16.github.io/modelrank_ai/finance_leaderboard.html)\n\n"
         
         # 在 Complete Data 部分之前添加
         complete_data_idx = content.find("## Complete Data")
@@ -451,7 +438,24 @@ async def update_readme():
     
     # Add license information (if it doesn't exist)
     if "## License" not in content:
-        content += "\n## License\n\nThis project is open-sourced under the MIT License.\n"
+        content += "\n## License\n\n"
+        license_section_en = "## License"
+        license_section_zh = "## 许可证"
+        
+        if license_section_zh in content:
+            start_idx = content.find(license_section_zh)
+            next_section_match = re.search(r"## [^#]", content[start_idx:])
+            if next_section_match:
+                end_idx = start_idx + next_section_match.start()
+            else:
+                end_idx = len(content)
+            
+            license_content = f"{license_section_en}\n\n"
+            license_content += "This project is open-sourced under the MIT License.\n\n"
+            
+            content = content[:start_idx] + license_content + content[end_idx:]
+        
+        content += "This project is open-sourced under the MIT License.\n"
     
     # Write back to README
     with open(readme_path, "w", encoding="utf-8") as f:

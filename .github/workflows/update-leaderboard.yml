@@ -1,5 +1,6 @@
 name: Update LLM Leaderboard
 
+
 on:
   schedule:
     - cron: '0 0 * * *'  # 每天 UTC 时间 00:00 运行
@@ -11,6 +12,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
         
       - name: Set up Python
         uses: actions/setup-python@v4
