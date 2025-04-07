@@ -12,7 +12,7 @@ This is an automatically updated open-source large language model leaderboard wi
 
 ## 🏆 ModelRank AI Leaderboard
 
-*Last updated: 2025-04-07 08:15:29 UTC*
+*Last updated: 2025-04-07 10:01:16 UTC*
 
 | Rank | Model | Avg | Params(B) | IFEval | BBH | MATH | GPQA | MUSR | MMLU-PRO |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -50,7 +50,7 @@ Domain-specific model leaderboards can be accessed via the following links:
 
 ## 🏥 Medical Domain Leaderboard
 
-*Top 10 models shown. Last updated: 2025-04-07 08:15:29 UTC*
+*Top 10 models shown. Last updated: 2025-04-07 10:01:16 UTC*
 
 | Rank | Model | Avg Score | Params(B) | MMLU-PRO | BBH | GPQA |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -69,7 +69,7 @@ Domain-specific model leaderboards can be accessed via the following links:
 
 ## ⚖️ Legal Domain Leaderboard
 
-*Top 10 models shown. Last updated: 2025-04-07 08:15:29 UTC*
+*Top 10 models shown. Last updated: 2025-04-07 10:01:16 UTC*
 
 | Rank | Model | Avg Score | Params(B) | MMLU-PRO | BBH |
 | --- | --- | --- | --- | --- | --- |
@@ -88,7 +88,7 @@ Domain-specific model leaderboards can be accessed via the following links:
 
 ## 💰 Finance Domain Leaderboard
 
-*Top 10 models shown. Last updated: 2025-04-07 08:15:29 UTC*
+*Top 10 models shown. Last updated: 2025-04-07 10:01:16 UTC*
 
 | Rank | Model | Avg Score | Params(B) | MATH Lvl 5 | MMLU-PRO | BBH |
 | --- | --- | --- | --- | --- | --- | --- |
