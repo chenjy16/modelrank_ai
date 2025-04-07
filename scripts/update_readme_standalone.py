@@ -10,8 +10,6 @@ import pandas as pd
 import re  # 添加 re 模块导入
 from pathlib import Path
 from datetime import datetime
-import re  # 添加 re 模块导入
-
 from dotenv import load_dotenv
 from huggingface_hub import HfApi
 import datasets
@@ -742,6 +740,21 @@ def generate_domain_html_page(df, domain, update_time):
     domain_display = domain_display_names.get(domain, domain.capitalize())
     
     # 创建完整的 HTML 页面
+    # The error is likely in an f-string that contains a backslash
+    # Common places for this are in path strings or regex patterns
+    # Let's fix it by using raw strings (r"...") or by doubling the backslashes
+    
+    # For example, if there's code like:
+    # path = f"C:\Users\{username}\Documents"
+    
+    # It should be changed to either:
+    # path = f"C:\\Users\\{username}\\Documents"
+    # OR
+    # path = rf"C:\Users\{username}\Documents"
+    
+    # Look for any f-strings with backslashes in the HTML generation part
+    # For example, in the js_code variable:
+    
     js_code = r"""
     <script>
         $(document).ready(function() {
@@ -765,6 +778,9 @@ def generate_domain_html_page(df, domain, update_time):
         });
     </script>
     """
+    
+    # Note the use of r""" instead of """ to make it a raw string
+    # This prevents the need to escape backslashes
     
     # 使用这个变量在 HTML 内容中
     html_content = f"""<!DOCTYPE html>
