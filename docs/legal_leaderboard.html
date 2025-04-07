@@ -7,55 +7,40 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
     <style>
-        body { 
-            padding: 20px; 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-        }
+        body { padding: 20px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
         .container { max-width: 1400px; }
         h1 { margin-bottom: 20px; color: #333; }
         .table { width: 100%; }
-        .table th { 
-            position: sticky; 
-            top: 0; 
-            background-color: #f8f9fa; 
-            color: #333;
-            font-weight: 600;
-        }
-        .table td { vertical-align: middle; }
-        .footer { 
-            margin-top: 30px; 
-            padding-top: 10px; 
-            border-top: 1px solid #eee; 
-            color: #666;
-            font-size: 0.9rem;
-        }
+        .table th { position: sticky; top: 0; background-color: #f8f9fa; color: #333; font-weight: 600; white-space: nowrap; }
+        .table td { vertical-align: middle; white-space: nowrap; }
+        .footer { margin-top: 30px; padding-top: 10px; border-top: 1px solid #eee; color: #666; font-size: 0.9rem; }
         .card { margin-bottom: 20px; }
         .badge { font-size: 0.8rem; }
+        .table-responsive { overflow-x: auto; }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="row mb-4">
+        <div class="row mb-4 align-items-center">
             <div class="col-md-8">
-                <h1>🏆 ModelRank AI - Legal Domain Leaderboard</h1>
-                <p class="text-muted">Last updated: 2025-04-07 04:25:08 UTC</p>
+                <h1>⚖️ ModelRank AI - Legal Domain Leaderboard</h1>
+                <p class="text-muted mb-0">Last updated: 2025-04-07 06:36:11 UTC</p>
             </div>
             <div class="col-md-4 text-end">
-                <a href="index.html" class="btn btn-outline-primary me-2">Back to Main Leaderboard</a>
-                <a href="https://github.com/chenjy16/modelrank_ai" class="btn btn-outline-dark">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
-                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-                    </svg>
-                    GitHub Repository
-                </a>
+                <a href="index.html" class="btn btn-outline-secondary me-2">Back to Main Leaderboard</a>
+                 <a href="https://github.com/chenjy16/modelrank_ai" class="btn btn-outline-dark" target="_blank">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                         <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                     </svg> GitHub
+                 </a>
             </div>
         </div>
-        
+
         <div class="card">
             <div class="card-header bg-light">
                 <div class="row">
                     <div class="col">
-                        <h5 class="mb-0">Legal Domain Leaderboard Data</h5>
+                        <h5 class="mb-0">Legal Domain Leaderboard</h5>
                     </div>
                     <div class="col-auto">
                         <span class="badge bg-primary">Total: 4576 models</span>
@@ -64,15 +49,15 @@
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table border="1" class="dataframe table table-striped table-hover table-bordered" id="legal_leaderboard">
+                    <table border="1" class="dataframe table table-striped table-hover table-bordered" id="leaderboard">
   <thead>
     <tr style="text-align: right;">
       <th>Rank</th>
       <th>Model</th>
       <th>Average Score</th>
       <th>Parameters(B)</th>
-      <th>Mmlu-pro</th>
-      <th>Bbh</th>
+      <th>MMLU-PRO</th>
+      <th>BBH</th>
     </tr>
   </thead>
   <tbody>
@@ -136,7 +121,7 @@
       <td>8</td>
       <td><a href="https://huggingface.co/JungZoona/T3Q-Qwen2.5-14B-Instruct-1M-e3" target="_blank"><a target="_blank" href="https://huggingface.co/JungZoona/T3Q-Qwen2.5-14B-Instruct-1M-e3" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">JungZoona/T3Q-Qwen2.5-14B-Instruct-1M-e3</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/JungZoona__T3Q-Qwen2.5-14B-Instruct-1M-e3-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>58.75</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>54.27</td>
       <td>65.47</td>
     </tr>
@@ -1096,7 +1081,7 @@
       <td>128</td>
       <td><a href="https://huggingface.co/migtissera/Tess-v2.5.2-Qwen2-72B" target="_blank"><a target="_blank" href="https://huggingface.co/migtissera/Tess-v2.5.2-Qwen2-72B" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">migtissera/Tess-v2.5.2-Qwen2-72B</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/migtissera__Tess-v2.5.2-Qwen2-72B-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>51.33</td>
-      <td>72.0</td>
+      <td>72</td>
       <td>50.68</td>
       <td>52.31</td>
     </tr>
@@ -1664,7 +1649,7 @@
       <td>199</td>
       <td><a href="https://huggingface.co/sometimesanotion/Qwentinuum-14B-v9" target="_blank"><a target="_blank" href="https://huggingface.co/sometimesanotion/Qwentinuum-14B-v9" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sometimesanotion/Qwentinuum-14B-v9</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sometimesanotion__Qwentinuum-14B-v9-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>49.80</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>49.13</td>
       <td>50.80</td>
     </tr>
@@ -1768,7 +1753,7 @@
       <td>212</td>
       <td><a href="https://huggingface.co/sometimesanotion/Qwentinuum-14B-v1" target="_blank"><a target="_blank" href="https://huggingface.co/sometimesanotion/Qwentinuum-14B-v1" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sometimesanotion/Qwentinuum-14B-v1</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sometimesanotion__Qwentinuum-14B-v1-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>49.69</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>49.00</td>
       <td>50.74</td>
     </tr>
@@ -1848,7 +1833,7 @@
       <td>222</td>
       <td><a href="https://huggingface.co/sometimesanotion/Qwentinuum-14B-v2" target="_blank"><a target="_blank" href="https://huggingface.co/sometimesanotion/Qwentinuum-14B-v2" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sometimesanotion/Qwentinuum-14B-v2</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sometimesanotion__Qwentinuum-14B-v2-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>49.61</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>48.99</td>
       <td>50.54</td>
     </tr>
@@ -1888,7 +1873,7 @@
       <td>227</td>
       <td><a href="https://huggingface.co/sometimesanotion/Qwenvergence-14B-v3-Reason" target="_blank"><a target="_blank" href="https://huggingface.co/sometimesanotion/Qwenvergence-14B-v3-Reason" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sometimesanotion/Qwenvergence-14B-v3-Reason</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sometimesanotion__Qwenvergence-14B-v3-Reason-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>49.58</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>48.83</td>
       <td>50.69</td>
     </tr>
@@ -1912,7 +1897,7 @@
       <td>230</td>
       <td><a href="https://huggingface.co/sometimesanotion/Qwentinuum-14B-v5" target="_blank"><a target="_blank" href="https://huggingface.co/sometimesanotion/Qwentinuum-14B-v5" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sometimesanotion/Qwentinuum-14B-v5</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sometimesanotion__Qwentinuum-14B-v5-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>49.57</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>49.09</td>
       <td>50.28</td>
     </tr>
@@ -1920,7 +1905,7 @@
       <td>231</td>
       <td><a href="https://huggingface.co/sometimesanotion/Qwenvergence-14B-v3-Reason" target="_blank"><a target="_blank" href="https://huggingface.co/sometimesanotion/Qwenvergence-14B-v3-Reason" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sometimesanotion/Qwenvergence-14B-v3-Reason</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sometimesanotion__Qwenvergence-14B-v3-Reason-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>49.56</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>48.85</td>
       <td>50.64</td>
     </tr>
@@ -1968,7 +1953,7 @@
       <td>237</td>
       <td><a href="https://huggingface.co/sometimesanotion/Qwentinuum-14B-v7" target="_blank"><a target="_blank" href="https://huggingface.co/sometimesanotion/Qwentinuum-14B-v7" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sometimesanotion/Qwentinuum-14B-v7</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sometimesanotion__Qwentinuum-14B-v7-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>49.54</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>49.00</td>
       <td>50.35</td>
     </tr>
@@ -2072,7 +2057,7 @@
       <td>250</td>
       <td><a href="https://huggingface.co/sometimesanotion/Qwentinuum-14B-v8" target="_blank"><a target="_blank" href="https://huggingface.co/sometimesanotion/Qwentinuum-14B-v8" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sometimesanotion/Qwentinuum-14B-v8</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sometimesanotion__Qwentinuum-14B-v8-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>49.46</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>49.02</td>
       <td>50.11</td>
     </tr>
@@ -2112,7 +2097,7 @@
       <td>255</td>
       <td><a href="https://huggingface.co/sometimesanotion/Qwentinuum-14B-v3" target="_blank"><a target="_blank" href="https://huggingface.co/sometimesanotion/Qwentinuum-14B-v3" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sometimesanotion/Qwentinuum-14B-v3</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sometimesanotion__Qwentinuum-14B-v3-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>49.44</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>49.03</td>
       <td>50.04</td>
     </tr>
@@ -2128,7 +2113,7 @@
       <td>257</td>
       <td><a href="https://huggingface.co/sometimesanotion/Qwentinuum-14B-v6" target="_blank"><a target="_blank" href="https://huggingface.co/sometimesanotion/Qwentinuum-14B-v6" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sometimesanotion/Qwentinuum-14B-v6</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sometimesanotion__Qwentinuum-14B-v6-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>49.42</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>48.89</td>
       <td>50.23</td>
     </tr>
@@ -2232,7 +2217,7 @@
       <td>270</td>
       <td><a href="https://huggingface.co/sometimesanotion/Qwenvergence-14B-v3" target="_blank"><a target="_blank" href="https://huggingface.co/sometimesanotion/Qwenvergence-14B-v3" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sometimesanotion/Qwenvergence-14B-v3</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sometimesanotion__Qwenvergence-14B-v3-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>49.38</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>48.74</td>
       <td>50.35</td>
     </tr>
@@ -2240,7 +2225,7 @@
       <td>271</td>
       <td><a href="https://huggingface.co/sometimesanotion/Qwen2.5-14B-Vimarckoso-v2" target="_blank"><a target="_blank" href="https://huggingface.co/sometimesanotion/Qwen2.5-14B-Vimarckoso-v2" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sometimesanotion/Qwen2.5-14B-Vimarckoso-v2</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sometimesanotion__Qwen2.5-14B-Vimarckoso-v2-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>49.37</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>48.66</td>
       <td>50.42</td>
     </tr>
@@ -2296,7 +2281,7 @@
       <td>278</td>
       <td><a href="https://huggingface.co/sometimesanotion/Qwentinuum-14B-v6-Prose" target="_blank"><a target="_blank" href="https://huggingface.co/sometimesanotion/Qwentinuum-14B-v6-Prose" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sometimesanotion/Qwentinuum-14B-v6-Prose</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sometimesanotion__Qwentinuum-14B-v6-Prose-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>49.34</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>48.80</td>
       <td>50.14</td>
     </tr>
@@ -2440,7 +2425,7 @@
       <td>296</td>
       <td><a href="https://huggingface.co/sometimesanotion/Qwenvergence-14B-v6-Prose-model_stock" target="_blank"><a target="_blank" href="https://huggingface.co/sometimesanotion/Qwenvergence-14B-v6-Prose-model_stock" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sometimesanotion/Qwenvergence-14B-v6-Prose-model_stock</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sometimesanotion__Qwenvergence-14B-v6-Prose-model_stock-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>49.21</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>48.75</td>
       <td>49.91</td>
     </tr>
@@ -2496,7 +2481,7 @@
       <td>303</td>
       <td><a href="https://huggingface.co/sometimesanotion/Qwenvergence-14B-v6-Prose" target="_blank"><a target="_blank" href="https://huggingface.co/sometimesanotion/Qwenvergence-14B-v6-Prose" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sometimesanotion/Qwenvergence-14B-v6-Prose</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sometimesanotion__Qwenvergence-14B-v6-Prose-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>49.19</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>48.56</td>
       <td>50.12</td>
     </tr>
@@ -2568,7 +2553,7 @@
       <td>312</td>
       <td><a href="https://huggingface.co/sometimesanotion/Qwenvergence-14B-v2-Prose" target="_blank"><a target="_blank" href="https://huggingface.co/sometimesanotion/Qwenvergence-14B-v2-Prose" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sometimesanotion/Qwenvergence-14B-v2-Prose</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sometimesanotion__Qwenvergence-14B-v2-Prose-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>49.12</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>48.57</td>
       <td>49.93</td>
     </tr>
@@ -2656,7 +2641,7 @@
       <td>323</td>
       <td><a href="https://huggingface.co/sometimesanotion/Qwen-14B-ProseStock-v4" target="_blank"><a target="_blank" href="https://huggingface.co/sometimesanotion/Qwen-14B-ProseStock-v4" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sometimesanotion/Qwen-14B-ProseStock-v4</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sometimesanotion__Qwen-14B-ProseStock-v4-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>49.06</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>48.74</td>
       <td>49.54</td>
     </tr>
@@ -2816,7 +2801,7 @@
       <td>343</td>
       <td><a href="https://huggingface.co/cognitivecomputations/dolphin-2.9.2-qwen2-72b" target="_blank"><a target="_blank" href="https://huggingface.co/cognitivecomputations/dolphin-2.9.2-qwen2-72b" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">cognitivecomputations/dolphin-2.9.2-qwen2-72b</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/cognitivecomputations__dolphin-2.9.2-qwen2-72b-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>48.89</td>
-      <td>72.0</td>
+      <td>72</td>
       <td>49.68</td>
       <td>47.70</td>
     </tr>
@@ -3168,7 +3153,7 @@
       <td>387</td>
       <td><a href="https://huggingface.co/sometimesanotion/Qwen2.5-14B-Vimarckoso-v3" target="_blank"><a target="_blank" href="https://huggingface.co/sometimesanotion/Qwen2.5-14B-Vimarckoso-v3" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sometimesanotion/Qwen2.5-14B-Vimarckoso-v3</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sometimesanotion__Qwen2.5-14B-Vimarckoso-v3-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>48.39</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>48.26</td>
       <td>48.58</td>
     </tr>
@@ -3208,7 +3193,7 @@
       <td>392</td>
       <td><a href="https://huggingface.co/Quazim0t0/ODB-14B-sce" target="_blank"><a target="_blank" href="https://huggingface.co/Quazim0t0/ODB-14B-sce" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">Quazim0t0/ODB-14B-sce</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/Quazim0t0__ODB-14B-sce-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>48.33</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>46.74</td>
       <td>50.70</td>
     </tr>
@@ -3240,7 +3225,7 @@
       <td>396</td>
       <td><a href="https://huggingface.co/sometimesanotion/Qwen2.5-14B-Vimarckoso-v3-model_stock" target="_blank"><a target="_blank" href="https://huggingface.co/sometimesanotion/Qwen2.5-14B-Vimarckoso-v3-model_stock" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sometimesanotion/Qwen2.5-14B-Vimarckoso-v3-model_stock</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sometimesanotion__Qwen2.5-14B-Vimarckoso-v3-model_stock-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>48.28</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>47.95</td>
       <td>48.76</td>
     </tr>
@@ -3464,7 +3449,7 @@
       <td>424</td>
       <td><a href="https://huggingface.co/qingy2019/Qwen2.5-Math-14B-Instruct-Alpha" target="_blank"><a target="_blank" href="https://huggingface.co/qingy2019/Qwen2.5-Math-14B-Instruct-Alpha" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">qingy2019/Qwen2.5-Math-14B-Instruct-Alpha</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/qingy2019__Qwen2.5-Math-14B-Instruct-Alpha-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>47.97</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>48.12</td>
       <td>47.75</td>
     </tr>
@@ -3656,7 +3641,7 @@
       <td>448</td>
       <td><a href="https://huggingface.co/qingy2019/Qwen2.5-Math-14B-Instruct" target="_blank"><a target="_blank" href="https://huggingface.co/qingy2019/Qwen2.5-Math-14B-Instruct" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">qingy2019/Qwen2.5-Math-14B-Instruct</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/qingy2019__Qwen2.5-Math-14B-Instruct-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>47.75</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>48.21</td>
       <td>47.07</td>
     </tr>
@@ -3704,7 +3689,7 @@
       <td>454</td>
       <td><a href="https://huggingface.co/qingy2019/Qwen2.5-Math-14B-Instruct" target="_blank"><a target="_blank" href="https://huggingface.co/qingy2019/Qwen2.5-Math-14B-Instruct" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">qingy2019/Qwen2.5-Math-14B-Instruct</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/qingy2019__Qwen2.5-Math-14B-Instruct-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>47.68</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>48.12</td>
       <td>47.02</td>
     </tr>
@@ -3768,7 +3753,7 @@
       <td>462</td>
       <td><a href="https://huggingface.co/sometimesanotion/Qwen2.5-14B-Vimarckoso-v3-Prose01" target="_blank"><a target="_blank" href="https://huggingface.co/sometimesanotion/Qwen2.5-14B-Vimarckoso-v3-Prose01" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sometimesanotion/Qwen2.5-14B-Vimarckoso-v3-Prose01</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sometimesanotion__Qwen2.5-14B-Vimarckoso-v3-Prose01-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>47.58</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>47.50</td>
       <td>47.71</td>
     </tr>
@@ -4008,7 +3993,7 @@
       <td>492</td>
       <td><a href="https://huggingface.co/SicariusSicariiStuff/Qwen2.5-14B_Uncensored" target="_blank"><a target="_blank" href="https://huggingface.co/SicariusSicariiStuff/Qwen2.5-14B_Uncensored" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">SicariusSicariiStuff/Qwen2.5-14B_Uncensored</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/SicariusSicariiStuff__Qwen2.5-14B_Uncensored-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>47.13</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>47.40</td>
       <td>46.72</td>
     </tr>
@@ -4016,7 +4001,7 @@
       <td>493</td>
       <td><a href="https://huggingface.co/SicariusSicariiStuff/Qwen2.5-14B_Uncencored" target="_blank"><a target="_blank" href="https://huggingface.co/SicariusSicariiStuff/Qwen2.5-14B_Uncencored" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">SicariusSicariiStuff/Qwen2.5-14B_Uncencored</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/SicariusSicariiStuff__Qwen2.5-14B_Uncencored-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>47.13</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>47.40</td>
       <td>46.72</td>
     </tr>
@@ -4040,7 +4025,7 @@
       <td>496</td>
       <td><a href="https://huggingface.co/qingy2024/Qwen2.6-Math-14B-Instruct" target="_blank"><a target="_blank" href="https://huggingface.co/qingy2024/Qwen2.6-Math-14B-Instruct" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">qingy2024/Qwen2.6-Math-14B-Instruct</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/qingy2024__Qwen2.6-Math-14B-Instruct-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>47.08</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>47.12</td>
       <td>47.02</td>
     </tr>
@@ -4208,7 +4193,7 @@
       <td>517</td>
       <td><a href="https://huggingface.co/sometimesanotion/Qwenvergence-14B-qv256" target="_blank"><a target="_blank" href="https://huggingface.co/sometimesanotion/Qwenvergence-14B-qv256" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sometimesanotion/Qwenvergence-14B-qv256</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sometimesanotion__Qwenvergence-14B-qv256-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>46.68</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>46.42</td>
       <td>47.08</td>
     </tr>
@@ -4240,7 +4225,7 @@
       <td>521</td>
       <td><a href="https://huggingface.co/sometimesanotion/Lamarck-14B-v0.6-model_stock" target="_blank"><a target="_blank" href="https://huggingface.co/sometimesanotion/Lamarck-14B-v0.6-model_stock" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sometimesanotion/Lamarck-14B-v0.6-model_stock</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sometimesanotion__Lamarck-14B-v0.6-model_stock-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>46.58</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>46.64</td>
       <td>46.49</td>
     </tr>
@@ -4256,7 +4241,7 @@
       <td>523</td>
       <td><a href="https://huggingface.co/sometimesanotion/Qwenvergence-14B-v0.6-004-model_stock" target="_blank"><a target="_blank" href="https://huggingface.co/sometimesanotion/Qwenvergence-14B-v0.6-004-model_stock" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sometimesanotion/Qwenvergence-14B-v0.6-004-model_stock</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sometimesanotion__Qwenvergence-14B-v0.6-004-model_stock-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>46.50</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>46.59</td>
       <td>46.37</td>
     </tr>
@@ -4272,7 +4257,7 @@
       <td>525</td>
       <td><a href="https://huggingface.co/qingy2024/Fusion-14B-Instruct" target="_blank"><a target="_blank" href="https://huggingface.co/qingy2024/Fusion-14B-Instruct" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">qingy2024/Fusion-14B-Instruct</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/qingy2024__Fusion-14B-Instruct-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>46.39</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>44.93</td>
       <td>48.58</td>
     </tr>
@@ -4816,7 +4801,7 @@
       <td>593</td>
       <td><a href="https://huggingface.co/sometimesanotion/Lamarck-14B-v0.6-002-model_stock" target="_blank"><a target="_blank" href="https://huggingface.co/sometimesanotion/Lamarck-14B-v0.6-002-model_stock" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sometimesanotion/Lamarck-14B-v0.6-002-model_stock</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sometimesanotion__Lamarck-14B-v0.6-002-model_stock-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>45.03</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>45.04</td>
       <td>45.01</td>
     </tr>
@@ -4928,7 +4913,7 @@
       <td>607</td>
       <td><a href="https://huggingface.co/aaditya/Llama3-OpenBioLLM-70B" target="_blank"><a target="_blank" href="https://huggingface.co/aaditya/Llama3-OpenBioLLM-70B" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">aaditya/Llama3-OpenBioLLM-70B</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/aaditya__Llama3-OpenBioLLM-70B-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>44.64</td>
-      <td>70.0</td>
+      <td>70</td>
       <td>42.97</td>
       <td>47.15</td>
     </tr>
@@ -4968,7 +4953,7 @@
       <td>612</td>
       <td><a href="https://huggingface.co/sometimesanotion/IF-reasoning-experiment-40" target="_blank"><a target="_blank" href="https://huggingface.co/sometimesanotion/IF-reasoning-experiment-40" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sometimesanotion/IF-reasoning-experiment-40</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sometimesanotion__IF-reasoning-experiment-40-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>44.56</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>44.72</td>
       <td>44.31</td>
     </tr>
@@ -5072,7 +5057,7 @@
       <td>625</td>
       <td><a href="https://huggingface.co/sometimesanotion/Qwentinuum-14B-v013" target="_blank"><a target="_blank" href="https://huggingface.co/sometimesanotion/Qwentinuum-14B-v013" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sometimesanotion/Qwentinuum-14B-v013</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sometimesanotion__Qwentinuum-14B-v013-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>44.19</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>44.34</td>
       <td>43.97</td>
     </tr>
@@ -5168,7 +5153,7 @@
       <td>637</td>
       <td><a href="https://huggingface.co/microsoft/Phi-3.5-MoE-instruct" target="_blank"><a target="_blank" href="https://huggingface.co/microsoft/Phi-3.5-MoE-instruct" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">microsoft/Phi-3.5-MoE-instruct</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/microsoft__Phi-3.5-MoE-instruct-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>43.89</td>
-      <td>42.0</td>
+      <td>42</td>
       <td>40.64</td>
       <td>48.77</td>
     </tr>
@@ -5208,7 +5193,7 @@
       <td>642</td>
       <td><a href="https://huggingface.co/cognitivecomputations/dolphin-2.9.2-Phi-3-Medium" target="_blank"><a target="_blank" href="https://huggingface.co/cognitivecomputations/dolphin-2.9.2-Phi-3-Medium" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">cognitivecomputations/dolphin-2.9.2-Phi-3-Medium</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/cognitivecomputations__dolphin-2.9.2-Phi-3-Medium-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>43.59</td>
-      <td>-1.0</td>
+      <td>-1</td>
       <td>39.50</td>
       <td>49.72</td>
     </tr>
@@ -5528,7 +5513,7 @@
       <td>682</td>
       <td><a href="https://huggingface.co/allenai/Llama-3.1-Tulu-3-70B-DPO" target="_blank"><a target="_blank" href="https://huggingface.co/allenai/Llama-3.1-Tulu-3-70B-DPO" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">allenai/Llama-3.1-Tulu-3-70B-DPO</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/allenai__Llama-3.1-Tulu-3-70B-DPO-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>42.24</td>
-      <td>70.0</td>
+      <td>70</td>
       <td>40.36</td>
       <td>45.05</td>
     </tr>
@@ -5640,7 +5625,7 @@
       <td>696</td>
       <td><a href="https://huggingface.co/cognitivecomputations/dolphin-2.9.3-Yi-1.5-34B-32k" target="_blank"><a target="_blank" href="https://huggingface.co/cognitivecomputations/dolphin-2.9.3-Yi-1.5-34B-32k" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">cognitivecomputations/dolphin-2.9.3-Yi-1.5-34B-32k</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/cognitivecomputations__dolphin-2.9.3-Yi-1.5-34B-32k-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>41.56</td>
-      <td>34.0</td>
+      <td>34</td>
       <td>40.34</td>
       <td>43.41</td>
     </tr>
@@ -7096,7 +7081,7 @@
       <td>878</td>
       <td><a href="https://huggingface.co/brgx53/3Bgeneralv2-ECE-PRYMMAL-Martial" target="_blank"><a target="_blank" href="https://huggingface.co/brgx53/3Bgeneralv2-ECE-PRYMMAL-Martial" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">brgx53/3Bgeneralv2-ECE-PRYMMAL-Martial</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/brgx53__3Bgeneralv2-ECE-PRYMMAL-Martial-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>38.27</td>
-      <td>3.0</td>
+      <td>3</td>
       <td>38.95</td>
       <td>37.25</td>
     </tr>
@@ -7176,7 +7161,7 @@
       <td>888</td>
       <td><a href="https://huggingface.co/sometimesanotion/Qwen2.5-14B-Vimarckoso-v3-IF-Variant" target="_blank"><a target="_blank" href="https://huggingface.co/sometimesanotion/Qwen2.5-14B-Vimarckoso-v3-IF-Variant" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sometimesanotion/Qwen2.5-14B-Vimarckoso-v3-IF-Variant</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sometimesanotion__Qwen2.5-14B-Vimarckoso-v3-IF-Variant-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>38.19</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>39.87</td>
       <td>35.65</td>
     </tr>
@@ -8232,7 +8217,7 @@
       <td>1020</td>
       <td><a href="https://huggingface.co/jeffmeloy/Qwen2.5-7B-minperplexity-2" target="_blank"><a target="_blank" href="https://huggingface.co/jeffmeloy/Qwen2.5-7B-minperplexity-2" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">jeffmeloy/Qwen2.5-7B-minperplexity-2</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/jeffmeloy__Qwen2.5-7B-minperplexity-2-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>37.06</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>37.18</td>
       <td>36.89</td>
     </tr>
@@ -8928,7 +8913,7 @@
       <td>1107</td>
       <td><a href="https://huggingface.co/google/gemma-2-9b-it" target="_blank"><a target="_blank" href="https://huggingface.co/google/gemma-2-9b-it" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">google/gemma-2-9b-it</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/google__gemma-2-9b-it-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>36.02</td>
-      <td>9.0</td>
+      <td>9</td>
       <td>31.95</td>
       <td>42.14</td>
     </tr>
@@ -9304,7 +9289,7 @@
       <td>1154</td>
       <td><a href="https://huggingface.co/pankajmathur/orca_mini_v3_70b" target="_blank"><a target="_blank" href="https://huggingface.co/pankajmathur/orca_mini_v3_70b" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">pankajmathur/orca_mini_v3_70b</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/pankajmathur__orca_mini_v3_70b-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>35.57</td>
-      <td>70.0</td>
+      <td>70</td>
       <td>30.64</td>
       <td>42.98</td>
     </tr>
@@ -9408,7 +9393,7 @@
       <td>1167</td>
       <td><a href="https://huggingface.co/THUDM/glm-4-9b" target="_blank"><a target="_blank" href="https://huggingface.co/THUDM/glm-4-9b" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">THUDM/glm-4-9b</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/THUDM__glm-4-9b-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>35.29</td>
-      <td>9.0</td>
+      <td>9</td>
       <td>34.94</td>
       <td>35.81</td>
     </tr>
@@ -9960,7 +9945,7 @@
       <td>1236</td>
       <td><a href="https://huggingface.co/Youlln/3PRYMMAL-PHI3-3B-SLERP" target="_blank"><a target="_blank" href="https://huggingface.co/Youlln/3PRYMMAL-PHI3-3B-SLERP" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">Youlln/3PRYMMAL-PHI3-3B-SLERP</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/Youlln__3PRYMMAL-PHI3-3B-SLERP-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>34.34</td>
-      <td>3.0</td>
+      <td>3</td>
       <td>33.35</td>
       <td>35.83</td>
     </tr>
@@ -9976,7 +9961,7 @@
       <td>1238</td>
       <td><a href="https://huggingface.co/google/gemma-2-9b" target="_blank"><a target="_blank" href="https://huggingface.co/google/gemma-2-9b" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">google/gemma-2-9b</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/google__gemma-2-9b-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>34.33</td>
-      <td>9.0</td>
+      <td>9</td>
       <td>34.48</td>
       <td>34.10</td>
     </tr>
@@ -11200,7 +11185,7 @@
       <td>1391</td>
       <td><a href="https://huggingface.co/deepseek-ai/deepseek-llm-67b-chat" target="_blank"><a target="_blank" href="https://huggingface.co/deepseek-ai/deepseek-llm-67b-chat" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">deepseek-ai/deepseek-llm-67b-chat</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/deepseek-ai__deepseek-llm-67b-chat-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>32.91</td>
-      <td>67.0</td>
+      <td>67</td>
       <td>32.71</td>
       <td>33.23</td>
     </tr>
@@ -11824,7 +11809,7 @@
       <td>1469</td>
       <td><a href="https://huggingface.co/Delta-Vector/Henbane-7b-attempt2" target="_blank"><a target="_blank" href="https://huggingface.co/Delta-Vector/Henbane-7b-attempt2" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">Delta-Vector/Henbane-7b-attempt2</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/Delta-Vector__Henbane-7b-attempt2-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>32.53</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>33.64</td>
       <td>30.87</td>
     </tr>
@@ -12272,7 +12257,7 @@
       <td>1525</td>
       <td><a href="https://huggingface.co/DeepMount00/Llama-3.1-8b-Ita" target="_blank"><a target="_blank" href="https://huggingface.co/DeepMount00/Llama-3.1-8b-Ita" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">DeepMount00/Llama-3.1-8b-Ita</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/DeepMount00__Llama-3.1-8b-Ita-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>32.27</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>32.89</td>
       <td>31.33</td>
     </tr>
@@ -13216,7 +13201,7 @@
       <td>1643</td>
       <td><a href="https://huggingface.co/jeffmeloy/Qwen2.5-7B-nerd-uncensored-v1.3" target="_blank"><a target="_blank" href="https://huggingface.co/jeffmeloy/Qwen2.5-7B-nerd-uncensored-v1.3" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">jeffmeloy/Qwen2.5-7B-nerd-uncensored-v1.3</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/jeffmeloy__Qwen2.5-7B-nerd-uncensored-v1.3-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>31.67</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>33.51</td>
       <td>28.90</td>
     </tr>
@@ -13632,7 +13617,7 @@
       <td>1695</td>
       <td><a href="https://huggingface.co/FlofloB/10k_continued_pretraining_Phi-3-mini-4k-instruct_Unsloth_merged_16bit" target="_blank"><a target="_blank" href="https://huggingface.co/FlofloB/10k_continued_pretraining_Phi-3-mini-4k-instruct_Unsloth_merged_16bit" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">FlofloB/10k_continued_pretraining_Phi-3-mini-4k-instruct_Unsloth_merged_16bit</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/FlofloB__10k_continued_pretraining_Phi-3-mini-4k-instruct_Unsloth_merged_16bit-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>31.50</td>
-      <td>16.0</td>
+      <td>16</td>
       <td>30.77</td>
       <td>32.61</td>
     </tr>
@@ -13944,7 +13929,7 @@
       <td>1734</td>
       <td><a href="https://huggingface.co/WizardLMTeam/WizardLM-70B-V1.0" target="_blank"><a target="_blank" href="https://huggingface.co/WizardLMTeam/WizardLM-70B-V1.0" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">WizardLMTeam/WizardLM-70B-V1.0</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/WizardLMTeam__WizardLM-70B-V1.0-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>31.33</td>
-      <td>70.0</td>
+      <td>70</td>
       <td>27.18</td>
       <td>37.54</td>
     </tr>
@@ -14016,7 +14001,7 @@
       <td>1743</td>
       <td><a href="https://huggingface.co/FlofloB/test_continued_pretraining_Phi-3-mini-4k-instruct_Unsloth_merged_16bit" target="_blank"><a target="_blank" href="https://huggingface.co/FlofloB/test_continued_pretraining_Phi-3-mini-4k-instruct_Unsloth_merged_16bit" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">FlofloB/test_continued_pretraining_Phi-3-mini-4k-instruct_Unsloth_merged_16bit</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/FlofloB__test_continued_pretraining_Phi-3-mini-4k-instruct_Unsloth_merged_16bit-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>31.29</td>
-      <td>16.0</td>
+      <td>16</td>
       <td>30.23</td>
       <td>32.88</td>
     </tr>
@@ -14328,7 +14313,7 @@
       <td>1782</td>
       <td><a href="https://huggingface.co/OpenScholar/Llama-3.1_OpenScholar-8B" target="_blank"><a target="_blank" href="https://huggingface.co/OpenScholar/Llama-3.1_OpenScholar-8B" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">OpenScholar/Llama-3.1_OpenScholar-8B</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/OpenScholar__Llama-3.1_OpenScholar-8B-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>31.02</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>30.09</td>
       <td>32.40</td>
     </tr>
@@ -14656,7 +14641,7 @@
       <td>1823</td>
       <td><a href="https://huggingface.co/Delta-Vector/Baldur-8B" target="_blank"><a target="_blank" href="https://huggingface.co/Delta-Vector/Baldur-8B" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">Delta-Vector/Baldur-8B</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/Delta-Vector__Baldur-8B-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>30.71</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>29.49</td>
       <td>32.54</td>
     </tr>
@@ -15264,7 +15249,7 @@
       <td>1899</td>
       <td><a href="https://huggingface.co/pankajmathur/orca_mini_v6_8b_dpo" target="_blank"><a target="_blank" href="https://huggingface.co/pankajmathur/orca_mini_v6_8b_dpo" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">pankajmathur/orca_mini_v6_8b_dpo</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/pankajmathur__orca_mini_v6_8b_dpo-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>30.30</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>28.85</td>
       <td>32.48</td>
     </tr>
@@ -15952,7 +15937,7 @@
       <td>1985</td>
       <td><a href="https://huggingface.co/UCLA-AGI/Llama-3-Instruct-8B-SPPO-Iter2" target="_blank"><a target="_blank" href="https://huggingface.co/UCLA-AGI/Llama-3-Instruct-8B-SPPO-Iter2" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">UCLA-AGI/Llama-3-Instruct-8B-SPPO-Iter2</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/UCLA-AGI__Llama-3-Instruct-8B-SPPO-Iter2-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>29.89</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>29.91</td>
       <td>29.87</td>
     </tr>
@@ -16208,7 +16193,7 @@
       <td>2017</td>
       <td><a href="https://huggingface.co/databricks/dbrx-base" target="_blank"><a target="_blank" href="https://huggingface.co/databricks/dbrx-base" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">databricks/dbrx-base</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/databricks__dbrx-base-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>29.71</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>27.78</td>
       <td>32.61</td>
     </tr>
@@ -16512,7 +16497,7 @@
       <td>2055</td>
       <td><a href="https://huggingface.co/grimjim/Llama-3-Instruct-8B-SimPO-SPPO-Iter3-merge" target="_blank"><a target="_blank" href="https://huggingface.co/grimjim/Llama-3-Instruct-8B-SimPO-SPPO-Iter3-merge" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">grimjim/Llama-3-Instruct-8B-SimPO-SPPO-Iter3-merge</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/grimjim__Llama-3-Instruct-8B-SimPO-SPPO-Iter3-merge-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>29.52</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>29.83</td>
       <td>29.07</td>
     </tr>
@@ -17656,7 +17641,7 @@
       <td>2198</td>
       <td><a href="https://huggingface.co/Lyte/Llama-3.1-8B-Instruct-Reasoner-1o1_v0.3" target="_blank"><a target="_blank" href="https://huggingface.co/Lyte/Llama-3.1-8B-Instruct-Reasoner-1o1_v0.3" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">Lyte/Llama-3.1-8B-Instruct-Reasoner-1o1_v0.3</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/Lyte__Llama-3.1-8B-Instruct-Reasoner-1o1_v0.3-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>28.59</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>29.09</td>
       <td>27.84</td>
     </tr>
@@ -17936,7 +17921,7 @@
       <td>2233</td>
       <td><a href="https://huggingface.co/EpistemeAI2/Fireball-Alpaca-Llama3.1.08-8B-C-R1-KTO-Reflection" target="_blank"><a target="_blank" href="https://huggingface.co/EpistemeAI2/Fireball-Alpaca-Llama3.1.08-8B-C-R1-KTO-Reflection" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EpistemeAI2/Fireball-Alpaca-Llama3.1.08-8B-C-R1-KTO-Reflection</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EpistemeAI2__Fireball-Alpaca-Llama3.1.08-8B-C-R1-KTO-Reflection-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>28.31</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>28.81</td>
       <td>27.57</td>
     </tr>
@@ -17944,7 +17929,7 @@
       <td>2234</td>
       <td><a href="https://huggingface.co/EpistemeAI2/Fireball-Alpaca-Llama3.1.06-8B-Philos-dpo" target="_blank"><a target="_blank" href="https://huggingface.co/EpistemeAI2/Fireball-Alpaca-Llama3.1.06-8B-Philos-dpo" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EpistemeAI2/Fireball-Alpaca-Llama3.1.06-8B-Philos-dpo</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EpistemeAI2__Fireball-Alpaca-Llama3.1.06-8B-Philos-dpo-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>28.31</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>29.05</td>
       <td>27.21</td>
     </tr>
@@ -18072,7 +18057,7 @@
       <td>2250</td>
       <td><a href="https://huggingface.co/EpistemeAI/Fireball-Meta-Llama-3.1-8B-Instruct-Agent-0.003-128K" target="_blank"><a target="_blank" href="https://huggingface.co/EpistemeAI/Fireball-Meta-Llama-3.1-8B-Instruct-Agent-0.003-128K" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EpistemeAI/Fireball-Meta-Llama-3.1-8B-Instruct-Agent-0.003-128K</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EpistemeAI__Fireball-Meta-Llama-3.1-8B-Instruct-Agent-0.003-128K-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>28.16</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>28.26</td>
       <td>28.03</td>
     </tr>
@@ -18120,7 +18105,7 @@
       <td>2256</td>
       <td><a href="https://huggingface.co/EpistemeAI2/Fireball-Llama-3.1-8B-Philos-Reflection" target="_blank"><a target="_blank" href="https://huggingface.co/EpistemeAI2/Fireball-Llama-3.1-8B-Philos-Reflection" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EpistemeAI2/Fireball-Llama-3.1-8B-Philos-Reflection</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EpistemeAI2__Fireball-Llama-3.1-8B-Philos-Reflection-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>28.11</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>28.34</td>
       <td>27.77</td>
     </tr>
@@ -18256,7 +18241,7 @@
       <td>2273</td>
       <td><a href="https://huggingface.co/dustinwloring1988/Reflexis-8b-chat-v7" target="_blank"><a target="_blank" href="https://huggingface.co/dustinwloring1988/Reflexis-8b-chat-v7" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">dustinwloring1988/Reflexis-8b-chat-v7</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/dustinwloring1988__Reflexis-8b-chat-v7-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>28.01</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>29.36</td>
       <td>25.99</td>
     </tr>
@@ -18320,7 +18305,7 @@
       <td>2281</td>
       <td><a href="https://huggingface.co/abacusai/Liberated-Qwen1.5-14B" target="_blank"><a target="_blank" href="https://huggingface.co/abacusai/Liberated-Qwen1.5-14B" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">abacusai/Liberated-Qwen1.5-14B</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/abacusai__Liberated-Qwen1.5-14B-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>27.96</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>27.91</td>
       <td>28.02</td>
     </tr>
@@ -18376,7 +18361,7 @@
       <td>2288</td>
       <td><a href="https://huggingface.co/EpistemeAI/Fireball-12B-v1.13a-philosophers" target="_blank"><a target="_blank" href="https://huggingface.co/EpistemeAI/Fireball-12B-v1.13a-philosophers" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EpistemeAI/Fireball-12B-v1.13a-philosophers</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EpistemeAI__Fireball-12B-v1.13a-philosophers-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>27.91</td>
-      <td>12.0</td>
+      <td>12</td>
       <td>26.30</td>
       <td>30.34</td>
     </tr>
@@ -18488,7 +18473,7 @@
       <td>2302</td>
       <td><a href="https://huggingface.co/EpistemeAI/Fireball-Alpaca-Llama-3.1-8B-Philos-DPO-200" target="_blank"><a target="_blank" href="https://huggingface.co/EpistemeAI/Fireball-Alpaca-Llama-3.1-8B-Philos-DPO-200" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EpistemeAI/Fireball-Alpaca-Llama-3.1-8B-Philos-DPO-200</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EpistemeAI__Fireball-Alpaca-Llama-3.1-8B-Philos-DPO-200-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>27.77</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>28.70</td>
       <td>26.38</td>
     </tr>
@@ -18512,7 +18497,7 @@
       <td>2305</td>
       <td><a href="https://huggingface.co/EpistemeAI2/Fireball-Alpaca-Llama3.1-8B-Philos" target="_blank"><a target="_blank" href="https://huggingface.co/EpistemeAI2/Fireball-Alpaca-Llama3.1-8B-Philos" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EpistemeAI2/Fireball-Alpaca-Llama3.1-8B-Philos</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EpistemeAI2__Fireball-Alpaca-Llama3.1-8B-Philos-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>27.74</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>26.73</td>
       <td>29.26</td>
     </tr>
@@ -18536,7 +18521,7 @@
       <td>2308</td>
       <td><a href="https://huggingface.co/EpistemeAI/Fireball-Alpaca-Llama3.1.07-8B-Philos-Math-KTO-beta" target="_blank"><a target="_blank" href="https://huggingface.co/EpistemeAI/Fireball-Alpaca-Llama3.1.07-8B-Philos-Math-KTO-beta" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EpistemeAI/Fireball-Alpaca-Llama3.1.07-8B-Philos-Math-KTO-beta</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EpistemeAI__Fireball-Alpaca-Llama3.1.07-8B-Philos-Math-KTO-beta-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>27.71</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>28.26</td>
       <td>26.90</td>
     </tr>
@@ -18600,7 +18585,7 @@
       <td>2316</td>
       <td><a href="https://huggingface.co/EpistemeAI2/Fireball-Meta-Llama-3.1-8B-Instruct-Agent-0.005-128K-code-COT" target="_blank"><a target="_blank" href="https://huggingface.co/EpistemeAI2/Fireball-Meta-Llama-3.1-8B-Instruct-Agent-0.005-128K-code-COT" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EpistemeAI2/Fireball-Meta-Llama-3.1-8B-Instruct-Agent-0.005-128K-code-COT</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EpistemeAI2__Fireball-Meta-Llama-3.1-8B-Instruct-Agent-0.005-128K-code-COT-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>27.66</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>28.50</td>
       <td>26.40</td>
     </tr>
@@ -18640,7 +18625,7 @@
       <td>2321</td>
       <td><a href="https://huggingface.co/EpistemeAI2/Fireball-Alpaca-Llama3.1.07-8B-Philos-Math" target="_blank"><a target="_blank" href="https://huggingface.co/EpistemeAI2/Fireball-Alpaca-Llama3.1.07-8B-Philos-Math" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EpistemeAI2/Fireball-Alpaca-Llama3.1.07-8B-Philos-Math</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EpistemeAI2__Fireball-Alpaca-Llama3.1.07-8B-Philos-Math-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>27.63</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>28.12</td>
       <td>26.90</td>
     </tr>
@@ -18672,7 +18657,7 @@
       <td>2325</td>
       <td><a href="https://huggingface.co/EpistemeAI/Fireball-Meta-Llama-3.1-8B-Instruct-Agent-0.004-128K-code-ds-auto" target="_blank"><a target="_blank" href="https://huggingface.co/EpistemeAI/Fireball-Meta-Llama-3.1-8B-Instruct-Agent-0.004-128K-code-ds-auto" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EpistemeAI/Fireball-Meta-Llama-3.1-8B-Instruct-Agent-0.004-128K-code-ds-auto</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EpistemeAI__Fireball-Meta-Llama-3.1-8B-Instruct-Agent-0.004-128K-code-ds-auto-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>27.57</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>28.31</td>
       <td>26.45</td>
     </tr>
@@ -18712,7 +18697,7 @@
       <td>2330</td>
       <td><a href="https://huggingface.co/EpistemeAI2/Fireball-Alpaca-Llama3.1.08-8B-Philos-C-R1" target="_blank"><a target="_blank" href="https://huggingface.co/EpistemeAI2/Fireball-Alpaca-Llama3.1.08-8B-Philos-C-R1" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EpistemeAI2/Fireball-Alpaca-Llama3.1.08-8B-Philos-C-R1</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EpistemeAI2__Fireball-Alpaca-Llama3.1.08-8B-Philos-C-R1-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>27.53</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>28.03</td>
       <td>26.76</td>
     </tr>
@@ -18768,7 +18753,7 @@
       <td>2337</td>
       <td><a href="https://huggingface.co/EpistemeAI/Fireball-Meta-Llama-3.1-8B-Instruct-0.001-128K-auto" target="_blank"><a target="_blank" href="https://huggingface.co/EpistemeAI/Fireball-Meta-Llama-3.1-8B-Instruct-0.001-128K-auto" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EpistemeAI/Fireball-Meta-Llama-3.1-8B-Instruct-0.001-128K-auto</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EpistemeAI__Fireball-Meta-Llama-3.1-8B-Instruct-0.001-128K-auto-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>27.50</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>27.95</td>
       <td>26.83</td>
     </tr>
@@ -18784,7 +18769,7 @@
       <td>2339</td>
       <td><a href="https://huggingface.co/EpistemeAI2/Fireball-12B-v1.2" target="_blank"><a target="_blank" href="https://huggingface.co/EpistemeAI2/Fireball-12B-v1.2" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EpistemeAI2/Fireball-12B-v1.2</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EpistemeAI2__Fireball-12B-v1.2-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>27.49</td>
-      <td>12.0</td>
+      <td>12</td>
       <td>25.97</td>
       <td>29.78</td>
     </tr>
@@ -18880,7 +18865,7 @@
       <td>2351</td>
       <td><a href="https://huggingface.co/EpistemeAI/Fireball-Meta-Llama-3.1-8B-Instruct-Agent-0.003-128K-code" target="_blank"><a target="_blank" href="https://huggingface.co/EpistemeAI/Fireball-Meta-Llama-3.1-8B-Instruct-Agent-0.003-128K-code" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EpistemeAI/Fireball-Meta-Llama-3.1-8B-Instruct-Agent-0.003-128K-code</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EpistemeAI__Fireball-Meta-Llama-3.1-8B-Instruct-Agent-0.003-128K-code-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>27.42</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>26.92</td>
       <td>28.17</td>
     </tr>
@@ -18944,7 +18929,7 @@
       <td>2359</td>
       <td><a href="https://huggingface.co/EpistemeAI2/Fireball-Alpaca-Llama3.1.01-8B-Philos" target="_blank"><a target="_blank" href="https://huggingface.co/EpistemeAI2/Fireball-Alpaca-Llama3.1.01-8B-Philos" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EpistemeAI2/Fireball-Alpaca-Llama3.1.01-8B-Philos</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EpistemeAI2__Fireball-Alpaca-Llama3.1.01-8B-Philos-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>27.34</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>26.48</td>
       <td>28.63</td>
     </tr>
@@ -18952,7 +18937,7 @@
       <td>2360</td>
       <td><a href="https://huggingface.co/EpistemeAI/Fireball-Meta-Llama-3.2-8B-Instruct-agent-003-128k-code-DPO" target="_blank"><a target="_blank" href="https://huggingface.co/EpistemeAI/Fireball-Meta-Llama-3.2-8B-Instruct-agent-003-128k-code-DPO" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EpistemeAI/Fireball-Meta-Llama-3.2-8B-Instruct-agent-003-128k-code-DPO</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EpistemeAI__Fireball-Meta-Llama-3.2-8B-Instruct-agent-003-128k-code-DPO-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>27.33</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>28.01</td>
       <td>26.32</td>
     </tr>
@@ -19104,7 +19089,7 @@
       <td>2379</td>
       <td><a href="https://huggingface.co/EpistemeAI2/Fireball-Alpaca-Llama3.1.04-8B-Philos" target="_blank"><a target="_blank" href="https://huggingface.co/EpistemeAI2/Fireball-Alpaca-Llama3.1.04-8B-Philos" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EpistemeAI2/Fireball-Alpaca-Llama3.1.04-8B-Philos</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EpistemeAI2__Fireball-Alpaca-Llama3.1.04-8B-Philos-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>27.20</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>26.70</td>
       <td>27.96</td>
     </tr>
@@ -19432,7 +19417,7 @@
       <td>2420</td>
       <td><a href="https://huggingface.co/EpistemeAI/Fireball-Alpaca-Llama3.1.08-8B-Philos-C-R2" target="_blank"><a target="_blank" href="https://huggingface.co/EpistemeAI/Fireball-Alpaca-Llama3.1.08-8B-Philos-C-R2" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EpistemeAI/Fireball-Alpaca-Llama3.1.08-8B-Philos-C-R2</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EpistemeAI__Fireball-Alpaca-Llama3.1.08-8B-Philos-C-R2-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>26.98</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>26.13</td>
       <td>28.25</td>
     </tr>
@@ -19520,7 +19505,7 @@
       <td>2431</td>
       <td><a href="https://huggingface.co/EpistemeAI2/Fireball-Alpaca-Llama3.1.03-8B-Philos" target="_blank"><a target="_blank" href="https://huggingface.co/EpistemeAI2/Fireball-Alpaca-Llama3.1.03-8B-Philos" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EpistemeAI2/Fireball-Alpaca-Llama3.1.03-8B-Philos</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EpistemeAI2__Fireball-Alpaca-Llama3.1.03-8B-Philos-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>26.90</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>26.17</td>
       <td>27.99</td>
     </tr>
@@ -19632,7 +19617,7 @@
       <td>2445</td>
       <td><a href="https://huggingface.co/EpistemeAI2/Fireball-Meta-Llama-3.1-8B-Instruct-Agent-0.003-128K-code-math" target="_blank"><a target="_blank" href="https://huggingface.co/EpistemeAI2/Fireball-Meta-Llama-3.1-8B-Instruct-Agent-0.003-128K-code-math" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EpistemeAI2/Fireball-Meta-Llama-3.1-8B-Instruct-Agent-0.003-128K-code-math</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EpistemeAI2__Fireball-Meta-Llama-3.1-8B-Instruct-Agent-0.003-128K-code-math-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>26.83</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>26.89</td>
       <td>26.74</td>
     </tr>
@@ -19688,7 +19673,7 @@
       <td>2452</td>
       <td><a href="https://huggingface.co/EpistemeAI/Fireball-Meta-Llama-3.1-8B-Instruct-Agent-0.004-128K-code-COT" target="_blank"><a target="_blank" href="https://huggingface.co/EpistemeAI/Fireball-Meta-Llama-3.1-8B-Instruct-Agent-0.004-128K-code-COT" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EpistemeAI/Fireball-Meta-Llama-3.1-8B-Instruct-Agent-0.004-128K-code-COT</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EpistemeAI__Fireball-Meta-Llama-3.1-8B-Instruct-Agent-0.004-128K-code-COT-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>26.80</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>27.45</td>
       <td>25.82</td>
     </tr>
@@ -19792,7 +19777,7 @@
       <td>2465</td>
       <td><a href="https://huggingface.co/NousResearch/Yarn-Solar-10b-32k" target="_blank"><a target="_blank" href="https://huggingface.co/NousResearch/Yarn-Solar-10b-32k" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">NousResearch/Yarn-Solar-10b-32k</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/NousResearch__Yarn-Solar-10b-32k-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>26.75</td>
-      <td>10.0</td>
+      <td>10</td>
       <td>25.25</td>
       <td>28.99</td>
     </tr>
@@ -19872,7 +19857,7 @@
       <td>2475</td>
       <td><a href="https://huggingface.co/Replete-AI/Llama3-8B-Instruct-Replete-Adapted" target="_blank"><a target="_blank" href="https://huggingface.co/Replete-AI/Llama3-8B-Instruct-Replete-Adapted" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">Replete-AI/Llama3-8B-Instruct-Replete-Adapted</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/Replete-AI__Llama3-8B-Instruct-Replete-Adapted-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>26.70</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>26.57</td>
       <td>26.89</td>
     </tr>
@@ -20840,7 +20825,7 @@
       <td>2596</td>
       <td><a href="https://huggingface.co/pankajmathur/orca_mini_v5_8b_dpo" target="_blank"><a target="_blank" href="https://huggingface.co/pankajmathur/orca_mini_v5_8b_dpo" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">pankajmathur/orca_mini_v5_8b_dpo</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/pankajmathur__orca_mini_v5_8b_dpo-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>25.95</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>23.51</td>
       <td>29.61</td>
     </tr>
@@ -21104,7 +21089,7 @@
       <td>2629</td>
       <td><a href="https://huggingface.co/EpistemeAI/Fireball-Meta-Llama-3.1-8B-Instruct-Agent-0.003-128K-code-ds" target="_blank"><a target="_blank" href="https://huggingface.co/EpistemeAI/Fireball-Meta-Llama-3.1-8B-Instruct-Agent-0.003-128K-code-ds" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EpistemeAI/Fireball-Meta-Llama-3.1-8B-Instruct-Agent-0.003-128K-code-ds</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EpistemeAI__Fireball-Meta-Llama-3.1-8B-Instruct-Agent-0.003-128K-code-ds-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>25.71</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>26.55</td>
       <td>24.46</td>
     </tr>
@@ -21144,7 +21129,7 @@
       <td>2634</td>
       <td><a href="https://huggingface.co/NousResearch/Yarn-Solar-10b-64k" target="_blank"><a target="_blank" href="https://huggingface.co/NousResearch/Yarn-Solar-10b-64k" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">NousResearch/Yarn-Solar-10b-64k</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/NousResearch__Yarn-Solar-10b-64k-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>25.68</td>
-      <td>10.0</td>
+      <td>10</td>
       <td>23.87</td>
       <td>28.40</td>
     </tr>
@@ -21432,7 +21417,7 @@
       <td>2670</td>
       <td><a href="https://huggingface.co/Qwen/Qwen2.5-3B-Instruct" target="_blank"><a target="_blank" href="https://huggingface.co/Qwen/Qwen2.5-3B-Instruct" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">Qwen/Qwen2.5-3B-Instruct</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/Qwen__Qwen2.5-3B-Instruct-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>25.35</td>
-      <td>3.0</td>
+      <td>3</td>
       <td>25.05</td>
       <td>25.80</td>
     </tr>
@@ -21440,7 +21425,7 @@
       <td>2671</td>
       <td><a href="https://huggingface.co/EpistemeAI/Alpaca-Llama3.1-8B" target="_blank"><a target="_blank" href="https://huggingface.co/EpistemeAI/Alpaca-Llama3.1-8B" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EpistemeAI/Alpaca-Llama3.1-8B</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EpistemeAI__Alpaca-Llama3.1-8B-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>25.35</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>24.96</td>
       <td>25.94</td>
     </tr>
@@ -21536,7 +21521,7 @@
       <td>2683</td>
       <td><a href="https://huggingface.co/EpistemeAI/Polypsyche-Llama-3.1-8B-Instruct-Agent-0.003-128K-code-ds-auto-Empathy" target="_blank"><a target="_blank" href="https://huggingface.co/EpistemeAI/Polypsyche-Llama-3.1-8B-Instruct-Agent-0.003-128K-code-ds-auto-Empathy" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EpistemeAI/Polypsyche-Llama-3.1-8B-Instruct-Agent-0.003-128K-code-ds-auto-Empathy</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EpistemeAI__Polypsyche-Llama-3.1-8B-Instruct-Agent-0.003-128K-code-ds-auto-Empathy-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>25.18</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>25.68</td>
       <td>24.42</td>
     </tr>
@@ -21920,7 +21905,7 @@
       <td>2731</td>
       <td><a href="https://huggingface.co/Dans-DiscountModels/mistral-7b-test-merged" target="_blank"><a target="_blank" href="https://huggingface.co/Dans-DiscountModels/mistral-7b-test-merged" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">Dans-DiscountModels/mistral-7b-test-merged</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/Dans-DiscountModels__mistral-7b-test-merged-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>24.76</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>21.98</td>
       <td>28.94</td>
     </tr>
@@ -21952,7 +21937,7 @@
       <td>2735</td>
       <td><a href="https://huggingface.co/CausalLM/14B" target="_blank"><a target="_blank" href="https://huggingface.co/CausalLM/14B" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">CausalLM/14B</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/CausalLM__14B-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>24.72</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>24.68</td>
       <td>24.78</td>
     </tr>
@@ -22048,7 +22033,7 @@
       <td>2747</td>
       <td><a href="https://huggingface.co/teknium/OpenHermes-2-Mistral-7B" target="_blank"><a target="_blank" href="https://huggingface.co/teknium/OpenHermes-2-Mistral-7B" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">teknium/OpenHermes-2-Mistral-7B</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/teknium__OpenHermes-2-Mistral-7B-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>24.58</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>21.46</td>
       <td>29.25</td>
     </tr>
@@ -22136,7 +22121,7 @@
       <td>2758</td>
       <td><a href="https://huggingface.co/THUDM/glm-4-9b-chat" target="_blank"><a target="_blank" href="https://huggingface.co/THUDM/glm-4-9b-chat" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">THUDM/glm-4-9b-chat</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/THUDM__glm-4-9b-chat-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>24.53</td>
-      <td>9.0</td>
+      <td>9</td>
       <td>24.07</td>
       <td>25.21</td>
     </tr>
@@ -22416,7 +22401,7 @@
       <td>2793</td>
       <td><a href="https://huggingface.co/pankajmathur/orca_mini_v5_8b_orpo" target="_blank"><a target="_blank" href="https://huggingface.co/pankajmathur/orca_mini_v5_8b_orpo" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">pankajmathur/orca_mini_v5_8b_orpo</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/pankajmathur__orca_mini_v5_8b_orpo-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>24.13</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>21.63</td>
       <td>27.88</td>
     </tr>
@@ -22608,7 +22593,7 @@
       <td>2817</td>
       <td><a href="https://huggingface.co/uukuguy/speechless-code-mistral-7b-v1.0" target="_blank"><a target="_blank" href="https://huggingface.co/uukuguy/speechless-code-mistral-7b-v1.0" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">uukuguy/speechless-code-mistral-7b-v1.0</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/uukuguy__speechless-code-mistral-7b-v1.0-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>23.94</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>23.84</td>
       <td>24.09</td>
     </tr>
@@ -22992,7 +22977,7 @@
       <td>2865</td>
       <td><a href="https://huggingface.co/fulim/FineLlama-3.1-8B" target="_blank"><a target="_blank" href="https://huggingface.co/fulim/FineLlama-3.1-8B" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">fulim/FineLlama-3.1-8B</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/fulim__FineLlama-3.1-8B-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>23.43</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>24.08</td>
       <td>22.46</td>
     </tr>
@@ -23016,7 +23001,7 @@
       <td>2868</td>
       <td><a href="https://huggingface.co/Intel/neural-chat-7b-v3" target="_blank"><a target="_blank" href="https://huggingface.co/Intel/neural-chat-7b-v3" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">Intel/neural-chat-7b-v3</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/Intel__neural-chat-7b-v3-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>23.41</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>18.87</td>
       <td>30.21</td>
     </tr>
@@ -23240,7 +23225,7 @@
       <td>2896</td>
       <td><a href="https://huggingface.co/Intel/neural-chat-7b-v3-2" target="_blank"><a target="_blank" href="https://huggingface.co/Intel/neural-chat-7b-v3-2" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">Intel/neural-chat-7b-v3-2</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/Intel__neural-chat-7b-v3-2-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>23.21</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>18.52</td>
       <td>30.24</td>
     </tr>
@@ -23384,7 +23369,7 @@
       <td>2914</td>
       <td><a href="https://huggingface.co/openchat/openchat_3.5" target="_blank"><a target="_blank" href="https://huggingface.co/openchat/openchat_3.5" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">openchat/openchat_3.5</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/openchat__openchat_3.5-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>22.99</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>23.93</td>
       <td>21.58</td>
     </tr>
@@ -23600,7 +23585,7 @@
       <td>2941</td>
       <td><a href="https://huggingface.co/microsoft/Orca-2-13b" target="_blank"><a target="_blank" href="https://huggingface.co/microsoft/Orca-2-13b" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">microsoft/Orca-2-13b</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/microsoft__Orca-2-13b-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>22.59</td>
-      <td>13.0</td>
+      <td>13</td>
       <td>19.44</td>
       <td>27.31</td>
     </tr>
@@ -23720,7 +23705,7 @@
       <td>2956</td>
       <td><a href="https://huggingface.co/mistral-community/Mixtral-8x22B-v0.1" target="_blank"><a target="_blank" href="https://huggingface.co/mistral-community/Mixtral-8x22B-v0.1" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">mistral-community/Mixtral-8x22B-v0.1</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/mistral-community__Mixtral-8x22B-v0.1-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>22.39</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>28.89</td>
       <td>12.65</td>
     </tr>
@@ -23752,7 +23737,7 @@
       <td>2960</td>
       <td><a href="https://huggingface.co/Dans-DiscountModels/Mistral-7b-v0.3-Test-E0.7" target="_blank"><a target="_blank" href="https://huggingface.co/Dans-DiscountModels/Mistral-7b-v0.3-Test-E0.7" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">Dans-DiscountModels/Mistral-7b-v0.3-Test-E0.7</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/Dans-DiscountModels__Mistral-7b-v0.3-Test-E0.7-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>22.36</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>19.38</td>
       <td>26.82</td>
     </tr>
@@ -23912,7 +23897,7 @@
       <td>2980</td>
       <td><a href="https://huggingface.co/internlm/internlm2-7b" target="_blank"><a target="_blank" href="https://huggingface.co/internlm/internlm2-7b" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">internlm/internlm2-7b</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/internlm__internlm2-7b-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>22.11</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>10.00</td>
       <td>40.28</td>
     </tr>
@@ -24008,7 +23993,7 @@
       <td>2992</td>
       <td><a href="https://huggingface.co/apple/DCLM-7B" target="_blank"><a target="_blank" href="https://huggingface.co/apple/DCLM-7B" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">apple/DCLM-7B</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/apple__DCLM-7B-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>21.98</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>23.45</td>
       <td>19.76</td>
     </tr>
@@ -24056,7 +24041,7 @@
       <td>2998</td>
       <td><a href="https://huggingface.co/Intel/neural-chat-7b-v3-3" target="_blank"><a target="_blank" href="https://huggingface.co/Intel/neural-chat-7b-v3-3" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">Intel/neural-chat-7b-v3-3</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/Intel__neural-chat-7b-v3-3-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>21.93</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>18.05</td>
       <td>27.75</td>
     </tr>
@@ -24064,7 +24049,7 @@
       <td>2999</td>
       <td><a href="https://huggingface.co/qingy2019/LLaMa_3.2_3B_Catalysts" target="_blank"><a target="_blank" href="https://huggingface.co/qingy2019/LLaMa_3.2_3B_Catalysts" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">qingy2019/LLaMa_3.2_3B_Catalysts</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/qingy2019__LLaMa_3.2_3B_Catalysts-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>21.92</td>
-      <td>3.0</td>
+      <td>3</td>
       <td>22.31</td>
       <td>21.35</td>
     </tr>
@@ -24256,7 +24241,7 @@
       <td>3023</td>
       <td><a href="https://huggingface.co/teknium/CollectiveCognition-v1.1-Mistral-7B" target="_blank"><a target="_blank" href="https://huggingface.co/teknium/CollectiveCognition-v1.1-Mistral-7B" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">teknium/CollectiveCognition-v1.1-Mistral-7B</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/teknium__CollectiveCognition-v1.1-Mistral-7B-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>21.63</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>20.41</td>
       <td>23.48</td>
     </tr>
@@ -24392,7 +24377,7 @@
       <td>3040</td>
       <td><a href="https://huggingface.co/Open-Orca/Mistral-7B-OpenOrca" target="_blank"><a target="_blank" href="https://huggingface.co/Open-Orca/Mistral-7B-OpenOrca" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">Open-Orca/Mistral-7B-OpenOrca</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/Open-Orca__Mistral-7B-OpenOrca-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>21.36</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>18.37</td>
       <td>25.84</td>
     </tr>
@@ -24648,7 +24633,7 @@
       <td>3072</td>
       <td><a href="https://huggingface.co/google/recurrentgemma-9b-it" target="_blank"><a target="_blank" href="https://huggingface.co/google/recurrentgemma-9b-it" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">google/recurrentgemma-9b-it</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/google__recurrentgemma-9b-it-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>20.94</td>
-      <td>9.0</td>
+      <td>9</td>
       <td>20.48</td>
       <td>21.62</td>
     </tr>
@@ -24688,7 +24673,7 @@
       <td>3077</td>
       <td><a href="https://huggingface.co/NousResearch/Yarn-Mistral-7b-128k" target="_blank"><a target="_blank" href="https://huggingface.co/NousResearch/Yarn-Mistral-7b-128k" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">NousResearch/Yarn-Mistral-7b-128k</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/NousResearch__Yarn-Mistral-7b-128k-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>20.87</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>21.03</td>
       <td>20.63</td>
     </tr>
@@ -24712,7 +24697,7 @@
       <td>3080</td>
       <td><a href="https://huggingface.co/NousResearch/Yarn-Mistral-7b-64k" target="_blank"><a target="_blank" href="https://huggingface.co/NousResearch/Yarn-Mistral-7b-64k" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">NousResearch/Yarn-Mistral-7b-64k</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/NousResearch__Yarn-Mistral-7b-64k-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>20.85</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>21.27</td>
       <td>20.23</td>
     </tr>
@@ -24776,7 +24761,7 @@
       <td>3088</td>
       <td><a href="https://huggingface.co/Corianas/llama-3-reactor" target="_blank"><a target="_blank" href="https://huggingface.co/Corianas/llama-3-reactor" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">Corianas/llama-3-reactor</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/Corianas__llama-3-reactor-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>20.76</td>
-      <td>-1.0</td>
+      <td>-1</td>
       <td>20.01</td>
       <td>21.89</td>
     </tr>
@@ -24792,7 +24777,7 @@
       <td>3090</td>
       <td><a href="https://huggingface.co/Qwen/Qwen2.5-Math-7B-Instruct" target="_blank"><a target="_blank" href="https://huggingface.co/Qwen/Qwen2.5-Math-7B-Instruct" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">Qwen/Qwen2.5-Math-7B-Instruct</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/Qwen__Qwen2.5-Math-7B-Instruct-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>20.73</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>20.22</td>
       <td>21.49</td>
     </tr>
@@ -24816,7 +24801,7 @@
       <td>3093</td>
       <td><a href="https://huggingface.co/uukuguy/speechless-codellama-34b-v2.0" target="_blank"><a target="_blank" href="https://huggingface.co/uukuguy/speechless-codellama-34b-v2.0" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">uukuguy/speechless-codellama-34b-v2.0</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/uukuguy__speechless-codellama-34b-v2.0-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>20.68</td>
-      <td>34.0</td>
+      <td>34</td>
       <td>17.14</td>
       <td>25.99</td>
     </tr>
@@ -25088,7 +25073,7 @@
       <td>3127</td>
       <td><a href="https://huggingface.co/suayptalha/Komodo-Llama-3.2-3B-v2-fp16" target="_blank"><a target="_blank" href="https://huggingface.co/suayptalha/Komodo-Llama-3.2-3B-v2-fp16" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">suayptalha/Komodo-Llama-3.2-3B-v2-fp16</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/suayptalha__Komodo-Llama-3.2-3B-v2-fp16-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>20.43</td>
-      <td>3.0</td>
+      <td>3</td>
       <td>20.58</td>
       <td>20.20</td>
     </tr>
@@ -25568,7 +25553,7 @@
       <td>3187</td>
       <td><a href="https://huggingface.co/EpistemeAI/Llama-3.2-3B-Agent007-Coder" target="_blank"><a target="_blank" href="https://huggingface.co/EpistemeAI/Llama-3.2-3B-Agent007-Coder" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EpistemeAI/Llama-3.2-3B-Agent007-Coder</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EpistemeAI__Llama-3.2-3B-Agent007-Coder-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>19.95</td>
-      <td>3.0</td>
+      <td>3</td>
       <td>20.57</td>
       <td>19.03</td>
     </tr>
@@ -25624,7 +25609,7 @@
       <td>3194</td>
       <td><a href="https://huggingface.co/pankajmathur/model_007_13b_v2" target="_blank"><a target="_blank" href="https://huggingface.co/pankajmathur/model_007_13b_v2" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">pankajmathur/model_007_13b_v2</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/pankajmathur__model_007_13b_v2-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>19.92</td>
-      <td>13.0</td>
+      <td>13</td>
       <td>16.23</td>
       <td>25.45</td>
     </tr>
@@ -25944,7 +25929,7 @@
       <td>3234</td>
       <td><a href="https://huggingface.co/allenai/Llama-3.1-Tulu-3-8B-DPO" target="_blank"><a target="_blank" href="https://huggingface.co/allenai/Llama-3.1-Tulu-3-8B-DPO" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">allenai/Llama-3.1-Tulu-3-8B-DPO</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/allenai__Llama-3.1-Tulu-3-8B-DPO-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>19.62</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>21.09</td>
       <td>17.43</td>
     </tr>
@@ -26120,7 +26105,7 @@
       <td>3256</td>
       <td><a href="https://huggingface.co/FuJhen/mistral_7b_v0.1_structedData_e2e" target="_blank"><a target="_blank" href="https://huggingface.co/FuJhen/mistral_7b_v0.1_structedData_e2e" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">FuJhen/mistral_7b_v0.1_structedData_e2e</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/FuJhen__mistral_7b_v0.1_structedData_e2e-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>19.30</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>20.12</td>
       <td>18.06</td>
     </tr>
@@ -26144,7 +26129,7 @@
       <td>3259</td>
       <td><a href="https://huggingface.co/WizardLMTeam/WizardLM-13B-V1.2" target="_blank"><a target="_blank" href="https://huggingface.co/WizardLMTeam/WizardLM-13B-V1.2" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">WizardLMTeam/WizardLM-13B-V1.2</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/WizardLMTeam__WizardLM-13B-V1.2-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>19.28</td>
-      <td>13.0</td>
+      <td>13</td>
       <td>16.88</td>
       <td>22.89</td>
     </tr>
@@ -26408,7 +26393,7 @@
       <td>3292</td>
       <td><a href="https://huggingface.co/EpistemeAI/Athene-codegemma-2-7b-it-alpaca-v1.3" target="_blank"><a target="_blank" href="https://huggingface.co/EpistemeAI/Athene-codegemma-2-7b-it-alpaca-v1.3" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EpistemeAI/Athene-codegemma-2-7b-it-alpaca-v1.3</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EpistemeAI__Athene-codegemma-2-7b-it-alpaca-v1.3-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>18.93</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>17.64</td>
       <td>20.87</td>
     </tr>
@@ -26424,7 +26409,7 @@
       <td>3294</td>
       <td><a href="https://huggingface.co/pankajmathur/orca_mini_v3_13b" target="_blank"><a target="_blank" href="https://huggingface.co/pankajmathur/orca_mini_v3_13b" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">pankajmathur/orca_mini_v3_13b</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/pankajmathur__orca_mini_v3_13b-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>18.92</td>
-      <td>13.0</td>
+      <td>13</td>
       <td>14.50</td>
       <td>25.55</td>
     </tr>
@@ -27056,7 +27041,7 @@
       <td>3373</td>
       <td><a href="https://huggingface.co/microsoft/Orca-2-7b" target="_blank"><a target="_blank" href="https://huggingface.co/microsoft/Orca-2-7b" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">microsoft/Orca-2-7b</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/microsoft__Orca-2-7b-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>17.76</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>14.65</td>
       <td>22.43</td>
     </tr>
@@ -27088,7 +27073,7 @@
       <td>3377</td>
       <td><a href="https://huggingface.co/nvidia/Minitron-4B-Base" target="_blank"><a target="_blank" href="https://huggingface.co/nvidia/Minitron-4B-Base" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">nvidia/Minitron-4B-Base</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/nvidia__Minitron-4B-Base-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>17.68</td>
-      <td>4.0</td>
+      <td>4</td>
       <td>18.00</td>
       <td>17.22</td>
     </tr>
@@ -27176,7 +27161,7 @@
       <td>3388</td>
       <td><a href="https://huggingface.co/openchat/openchat_v3.2" target="_blank"><a target="_blank" href="https://huggingface.co/openchat/openchat_v3.2" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">openchat/openchat_v3.2</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/openchat__openchat_v3.2-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>17.61</td>
-      <td>13.0</td>
+      <td>13</td>
       <td>15.80</td>
       <td>20.32</td>
     </tr>
@@ -27296,7 +27281,7 @@
       <td>3403</td>
       <td><a href="https://huggingface.co/NotASI/FineTome-Llama3.2-3B-1002" target="_blank"><a target="_blank" href="https://huggingface.co/NotASI/FineTome-Llama3.2-3B-1002" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">NotASI/FineTome-Llama3.2-3B-1002</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/NotASI__FineTome-Llama3.2-3B-1002-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>17.39</td>
-      <td>3.0</td>
+      <td>3</td>
       <td>15.96</td>
       <td>19.52</td>
     </tr>
@@ -27320,7 +27305,7 @@
       <td>3406</td>
       <td><a href="https://huggingface.co/EpistemeAI/Athena-gemma-2-2b-it" target="_blank"><a target="_blank" href="https://huggingface.co/EpistemeAI/Athena-gemma-2-2b-it" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EpistemeAI/Athena-gemma-2-2b-it</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EpistemeAI__Athena-gemma-2-2b-it-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>17.25</td>
-      <td>2.0</td>
+      <td>2</td>
       <td>15.80</td>
       <td>19.42</td>
     </tr>
@@ -27344,7 +27329,7 @@
       <td>3409</td>
       <td><a href="https://huggingface.co/openchat/openchat_v3.2_super" target="_blank"><a target="_blank" href="https://huggingface.co/openchat/openchat_v3.2_super" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">openchat/openchat_v3.2_super</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/openchat__openchat_v3.2_super-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>17.16</td>
-      <td>13.0</td>
+      <td>13</td>
       <td>15.84</td>
       <td>19.15</td>
     </tr>
@@ -27456,7 +27441,7 @@
       <td>3423</td>
       <td><a href="https://huggingface.co/google/recurrentgemma-9b" target="_blank"><a target="_blank" href="https://huggingface.co/google/recurrentgemma-9b" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">google/recurrentgemma-9b</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/google__recurrentgemma-9b-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>16.83</td>
-      <td>9.0</td>
+      <td>9</td>
       <td>17.83</td>
       <td>15.32</td>
     </tr>
@@ -27528,7 +27513,7 @@
       <td>3432</td>
       <td><a href="https://huggingface.co/tiiuae/falcon-40b" target="_blank"><a target="_blank" href="https://huggingface.co/tiiuae/falcon-40b" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">tiiuae/falcon-40b</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/tiiuae__falcon-40b-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>16.67</td>
-      <td>40.0</td>
+      <td>40</td>
       <td>16.72</td>
       <td>16.58</td>
     </tr>
@@ -27544,7 +27529,7 @@
       <td>3434</td>
       <td><a href="https://huggingface.co/tiiuae/falcon-mamba-7b" target="_blank"><a target="_blank" href="https://huggingface.co/tiiuae/falcon-mamba-7b" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">tiiuae/falcon-mamba-7b</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/tiiuae__falcon-mamba-7b-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>16.63</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>14.47</td>
       <td>19.88</td>
     </tr>
@@ -27568,7 +27553,7 @@
       <td>3437</td>
       <td><a href="https://huggingface.co/teknium/OpenHermes-13B" target="_blank"><a target="_blank" href="https://huggingface.co/teknium/OpenHermes-13B" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">teknium/OpenHermes-13B</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/teknium__OpenHermes-13B-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>16.55</td>
-      <td>13.0</td>
+      <td>13</td>
       <td>15.44</td>
       <td>18.21</td>
     </tr>
@@ -27592,7 +27577,7 @@
       <td>3440</td>
       <td><a href="https://huggingface.co/nvidia/Nemotron-Mini-4B-Instruct" target="_blank"><a target="_blank" href="https://huggingface.co/nvidia/Nemotron-Mini-4B-Instruct" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">nvidia/Nemotron-Mini-4B-Instruct</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/nvidia__Nemotron-Mini-4B-Instruct-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>16.52</td>
-      <td>4.0</td>
+      <td>4</td>
       <td>18.07</td>
       <td>14.20</td>
     </tr>
@@ -27648,7 +27633,7 @@
       <td>3447</td>
       <td><a href="https://huggingface.co/EpistemeAI2/Athene-codegemma-2-7b-it-alpaca-v1.2" target="_blank"><a target="_blank" href="https://huggingface.co/EpistemeAI2/Athene-codegemma-2-7b-it-alpaca-v1.2" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EpistemeAI2/Athene-codegemma-2-7b-it-alpaca-v1.2</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EpistemeAI2__Athene-codegemma-2-7b-it-alpaca-v1.2-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>16.24</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>14.41</td>
       <td>18.97</td>
     </tr>
@@ -27944,7 +27929,7 @@
       <td>3484</td>
       <td><a href="https://huggingface.co/tiiuae/falcon-40b-instruct" target="_blank"><a target="_blank" href="https://huggingface.co/tiiuae/falcon-40b-instruct" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">tiiuae/falcon-40b-instruct</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/tiiuae__falcon-40b-instruct-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>15.30</td>
-      <td>40.0</td>
+      <td>40</td>
       <td>14.02</td>
       <td>17.22</td>
     </tr>
@@ -28176,7 +28161,7 @@
       <td>3513</td>
       <td><a href="https://huggingface.co/pankajmathur/orca_mini_v3_7b" target="_blank"><a target="_blank" href="https://huggingface.co/pankajmathur/orca_mini_v3_7b" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">pankajmathur/orca_mini_v3_7b</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/pankajmathur__orca_mini_v3_7b-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>14.36</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>12.04</td>
       <td>17.84</td>
     </tr>
@@ -28208,7 +28193,7 @@
       <td>3517</td>
       <td><a href="https://huggingface.co/NousResearch/Yarn-Llama-2-13b-128k" target="_blank"><a target="_blank" href="https://huggingface.co/NousResearch/Yarn-Llama-2-13b-128k" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">NousResearch/Yarn-Llama-2-13b-128k</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/NousResearch__Yarn-Llama-2-13b-128k-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>14.21</td>
-      <td>13.0</td>
+      <td>13</td>
       <td>14.67</td>
       <td>13.51</td>
     </tr>
@@ -28288,7 +28273,7 @@
       <td>3527</td>
       <td><a href="https://huggingface.co/dwikitheduck/gemma-2-2b-id" target="_blank"><a target="_blank" href="https://huggingface.co/dwikitheduck/gemma-2-2b-id" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">dwikitheduck/gemma-2-2b-id</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/dwikitheduck__gemma-2-2b-id-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>13.99</td>
-      <td>2.0</td>
+      <td>2</td>
       <td>13.04</td>
       <td>15.42</td>
     </tr>
@@ -28296,7 +28281,7 @@
       <td>3528</td>
       <td><a href="https://huggingface.co/dwikitheduck/gemma-2-2b-id-instruct" target="_blank"><a target="_blank" href="https://huggingface.co/dwikitheduck/gemma-2-2b-id-instruct" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">dwikitheduck/gemma-2-2b-id-instruct</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/dwikitheduck__gemma-2-2b-id-instruct-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>13.99</td>
-      <td>2.0</td>
+      <td>2</td>
       <td>13.04</td>
       <td>15.42</td>
     </tr>
@@ -28304,7 +28289,7 @@
       <td>3529</td>
       <td><a href="https://huggingface.co/dwikitheduck/gemma-2-2b-id-inst" target="_blank"><a target="_blank" href="https://huggingface.co/dwikitheduck/gemma-2-2b-id-inst" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">dwikitheduck/gemma-2-2b-id-inst</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/dwikitheduck__gemma-2-2b-id-inst-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>13.99</td>
-      <td>2.0</td>
+      <td>2</td>
       <td>13.04</td>
       <td>15.42</td>
     </tr>
@@ -28360,7 +28345,7 @@
       <td>3536</td>
       <td><a href="https://huggingface.co/lmsys/vicuna-7b-v1.5" target="_blank"><a target="_blank" href="https://huggingface.co/lmsys/vicuna-7b-v1.5" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">lmsys/vicuna-7b-v1.5</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/lmsys__vicuna-7b-v1.5-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>13.71</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>12.74</td>
       <td>15.15</td>
     </tr>
@@ -28392,7 +28377,7 @@
       <td>3540</td>
       <td><a href="https://huggingface.co/EpistemeAI/Athena-gemma-2-2b-it-Philos" target="_blank"><a target="_blank" href="https://huggingface.co/EpistemeAI/Athena-gemma-2-2b-it-Philos" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EpistemeAI/Athena-gemma-2-2b-it-Philos</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EpistemeAI__Athena-gemma-2-2b-it-Philos-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>13.61</td>
-      <td>2.0</td>
+      <td>2</td>
       <td>13.87</td>
       <td>13.21</td>
     </tr>
@@ -28536,7 +28521,7 @@
       <td>3558</td>
       <td><a href="https://huggingface.co/sci-m-wang/deepseek-llm-7b-chat-sa-v0.1" target="_blank"><a target="_blank" href="https://huggingface.co/sci-m-wang/deepseek-llm-7b-chat-sa-v0.1" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sci-m-wang/deepseek-llm-7b-chat-sa-v0.1</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sci-m-wang__deepseek-llm-7b-chat-sa-v0.1-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>12.88</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>13.43</td>
       <td>12.05</td>
     </tr>
@@ -28640,7 +28625,7 @@
       <td>3571</td>
       <td><a href="https://huggingface.co/awnr/Mistral-7B-v0.1-signtensors-1-over-4" target="_blank"><a target="_blank" href="https://huggingface.co/awnr/Mistral-7B-v0.1-signtensors-1-over-4" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">awnr/Mistral-7B-v0.1-signtensors-1-over-4</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/awnr__Mistral-7B-v0.1-signtensors-1-over-4-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>12.43</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>14.56</td>
       <td>9.23</td>
     </tr>
@@ -28704,7 +28689,7 @@
       <td>3579</td>
       <td><a href="https://huggingface.co/deepseek-ai/deepseek-llm-7b-chat" target="_blank"><a target="_blank" href="https://huggingface.co/deepseek-ai/deepseek-llm-7b-chat" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">deepseek-ai/deepseek-llm-7b-chat</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/deepseek-ai__deepseek-llm-7b-chat-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>12.06</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>12.59</td>
       <td>11.26</td>
     </tr>
@@ -28744,7 +28729,7 @@
       <td>3584</td>
       <td><a href="https://huggingface.co/Nexusflow/NexusRaven-V2-13B" target="_blank"><a target="_blank" href="https://huggingface.co/Nexusflow/NexusRaven-V2-13B" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">Nexusflow/NexusRaven-V2-13B</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/Nexusflow__NexusRaven-V2-13B-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>11.95</td>
-      <td>13.0</td>
+      <td>13</td>
       <td>9.69</td>
       <td>15.34</td>
     </tr>
@@ -28968,7 +28953,7 @@
       <td>3612</td>
       <td><a href="https://huggingface.co/lmsys/vicuna-13b-v1.3" target="_blank"><a target="_blank" href="https://huggingface.co/lmsys/vicuna-13b-v1.3" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">lmsys/vicuna-13b-v1.3</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/lmsys__vicuna-13b-v1.3-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>11.28</td>
-      <td>13.0</td>
+      <td>13</td>
       <td>13.81</td>
       <td>7.49</td>
     </tr>
@@ -29048,7 +29033,7 @@
       <td>3622</td>
       <td><a href="https://huggingface.co/teknium/OpenHermes-7B" target="_blank"><a target="_blank" href="https://huggingface.co/teknium/OpenHermes-7B" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">teknium/OpenHermes-7B</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/teknium__OpenHermes-7B-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>11.05</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>10.37</td>
       <td>12.08</td>
     </tr>
@@ -29160,7 +29145,7 @@
       <td>3636</td>
       <td><a href="https://huggingface.co/allenai/OLMo-7B-Instruct-hf" target="_blank"><a target="_blank" href="https://huggingface.co/allenai/OLMo-7B-Instruct-hf" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">allenai/OLMo-7B-Instruct-hf</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/allenai__OLMo-7B-Instruct-hf-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>10.50</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>8.72</td>
       <td>13.16</td>
     </tr>
@@ -29264,7 +29249,7 @@
       <td>3649</td>
       <td><a href="https://huggingface.co/qingy2019/OpenMath2-Llama3.1-8B" target="_blank"><a target="_blank" href="https://huggingface.co/qingy2019/OpenMath2-Llama3.1-8B" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">qingy2019/OpenMath2-Llama3.1-8B</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/qingy2019__OpenMath2-Llama3.1-8B-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>10.21</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>6.15</td>
       <td>16.29</td>
     </tr>
@@ -29504,7 +29489,7 @@
       <td>3679</td>
       <td><a href="https://huggingface.co/internlm/internlm2-1_8b" target="_blank"><a target="_blank" href="https://huggingface.co/internlm/internlm2-1_8b" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">internlm/internlm2-1_8b</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/internlm__internlm2-1_8b-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>9.38</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>6.54</td>
       <td>13.63</td>
     </tr>
@@ -29568,7 +29553,7 @@
       <td>3687</td>
       <td><a href="https://huggingface.co/deepseek-ai/deepseek-llm-7b-base" target="_blank"><a target="_blank" href="https://huggingface.co/deepseek-ai/deepseek-llm-7b-base" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">deepseek-ai/deepseek-llm-7b-base</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/deepseek-ai__deepseek-llm-7b-base-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>9.28</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>8.96</td>
       <td>9.77</td>
     </tr>
@@ -29736,7 +29721,7 @@
       <td>3708</td>
       <td><a href="https://huggingface.co/haoranxu/ALMA-13B-R" target="_blank"><a target="_blank" href="https://huggingface.co/haoranxu/ALMA-13B-R" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">haoranxu/ALMA-13B-R</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/haoranxu__ALMA-13B-R-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>8.97</td>
-      <td>13.0</td>
+      <td>13</td>
       <td>9.08</td>
       <td>8.82</td>
     </tr>
@@ -29856,7 +29841,7 @@
       <td>3723</td>
       <td><a href="https://huggingface.co/togethercomputer/Llama-2-7B-32K-Instruct" target="_blank"><a target="_blank" href="https://huggingface.co/togethercomputer/Llama-2-7B-32K-Instruct" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">togethercomputer/Llama-2-7B-32K-Instruct</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/togethercomputer__Llama-2-7B-32K-Instruct-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>8.63</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>8.68</td>
       <td>8.56</td>
     </tr>
@@ -29968,7 +29953,7 @@
       <td>3737</td>
       <td><a href="https://huggingface.co/togethercomputer/LLaMA-2-7B-32K" target="_blank"><a target="_blank" href="https://huggingface.co/togethercomputer/LLaMA-2-7B-32K" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">togethercomputer/LLaMA-2-7B-32K</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/togethercomputer__LLaMA-2-7B-32K-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>8.35</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>8.53</td>
       <td>8.09</td>
     </tr>
@@ -30080,7 +30065,7 @@
       <td>3751</td>
       <td><a href="https://huggingface.co/lmsys/vicuna-7b-v1.3" target="_blank"><a target="_blank" href="https://huggingface.co/lmsys/vicuna-7b-v1.3" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">lmsys/vicuna-7b-v1.3</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/lmsys__vicuna-7b-v1.3-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>8.17</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>9.31</td>
       <td>6.46</td>
     </tr>
@@ -30088,7 +30073,7 @@
       <td>3752</td>
       <td><a href="https://huggingface.co/sabersaleh/Llama2-7B-SPO" target="_blank"><a target="_blank" href="https://huggingface.co/sabersaleh/Llama2-7B-SPO" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sabersaleh/Llama2-7B-SPO</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sabersaleh__Llama2-7B-SPO-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>8.15</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>8.41</td>
       <td>7.77</td>
     </tr>
@@ -30096,7 +30081,7 @@
       <td>3753</td>
       <td><a href="https://huggingface.co/NousResearch/Yarn-Llama-2-7b-64k" target="_blank"><a target="_blank" href="https://huggingface.co/NousResearch/Yarn-Llama-2-7b-64k" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">NousResearch/Yarn-Llama-2-7b-64k</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/NousResearch__Yarn-Llama-2-7b-64k-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>8.14</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>8.87</td>
       <td>7.04</td>
     </tr>
@@ -30128,7 +30113,7 @@
       <td>3757</td>
       <td><a href="https://huggingface.co/sabersaleh/Llama2-7B-KTO" target="_blank"><a target="_blank" href="https://huggingface.co/sabersaleh/Llama2-7B-KTO" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sabersaleh/Llama2-7B-KTO</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sabersaleh__Llama2-7B-KTO-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>8.05</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>7.07</td>
       <td>9.51</td>
     </tr>
@@ -30232,7 +30217,7 @@
       <td>3770</td>
       <td><a href="https://huggingface.co/sabersaleh/Llama2-7B-DPO" target="_blank"><a target="_blank" href="https://huggingface.co/sabersaleh/Llama2-7B-DPO" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sabersaleh/Llama2-7B-DPO</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sabersaleh__Llama2-7B-DPO-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>7.92</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>6.95</td>
       <td>9.36</td>
     </tr>
@@ -30240,7 +30225,7 @@
       <td>3771</td>
       <td><a href="https://huggingface.co/sabersaleh/Llama2-7B-SimPO" target="_blank"><a target="_blank" href="https://huggingface.co/sabersaleh/Llama2-7B-SimPO" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sabersaleh/Llama2-7B-SimPO</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sabersaleh__Llama2-7B-SimPO-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>7.87</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>7.13</td>
       <td>8.98</td>
     </tr>
@@ -30280,7 +30265,7 @@
       <td>3776</td>
       <td><a href="https://huggingface.co/NousResearch/Yarn-Llama-2-7b-128k" target="_blank"><a target="_blank" href="https://huggingface.co/NousResearch/Yarn-Llama-2-7b-128k" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">NousResearch/Yarn-Llama-2-7b-128k</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/NousResearch__Yarn-Llama-2-7b-128k-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>7.73</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>8.79</td>
       <td>6.14</td>
     </tr>
@@ -30288,7 +30273,7 @@
       <td>3777</td>
       <td><a href="https://huggingface.co/sabersaleh/Llama2-7B-IPO" target="_blank"><a target="_blank" href="https://huggingface.co/sabersaleh/Llama2-7B-IPO" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sabersaleh/Llama2-7B-IPO</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sabersaleh__Llama2-7B-IPO-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>7.72</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>6.86</td>
       <td>9.02</td>
     </tr>
@@ -30312,7 +30297,7 @@
       <td>3780</td>
       <td><a href="https://huggingface.co/pankajmathur/orca_mini_v2_7b" target="_blank"><a target="_blank" href="https://huggingface.co/pankajmathur/orca_mini_v2_7b" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">pankajmathur/orca_mini_v2_7b</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/pankajmathur__orca_mini_v2_7b-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>7.69</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>6.02</td>
       <td>10.20</td>
     </tr>
@@ -30344,7 +30329,7 @@
       <td>3784</td>
       <td><a href="https://huggingface.co/sabersaleh/Llama2-7B-CPO" target="_blank"><a target="_blank" href="https://huggingface.co/sabersaleh/Llama2-7B-CPO" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sabersaleh/Llama2-7B-CPO</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sabersaleh__Llama2-7B-CPO-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>7.50</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>6.73</td>
       <td>8.66</td>
     </tr>
@@ -30496,7 +30481,7 @@
       <td>3803</td>
       <td><a href="https://huggingface.co/openbmb/MiniCPM-S-1B-sft-llama-format" target="_blank"><a target="_blank" href="https://huggingface.co/openbmb/MiniCPM-S-1B-sft-llama-format" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">openbmb/MiniCPM-S-1B-sft-llama-format</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/openbmb__MiniCPM-S-1B-sft-llama-format-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>7.28</td>
-      <td>1.0</td>
+      <td>1</td>
       <td>9.54</td>
       <td>3.90</td>
     </tr>
@@ -30584,7 +30569,7 @@
       <td>3814</td>
       <td><a href="https://huggingface.co/togethercomputer/GPT-JT-6B-v1" target="_blank"><a target="_blank" href="https://huggingface.co/togethercomputer/GPT-JT-6B-v1" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">togethercomputer/GPT-JT-6B-v1</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/togethercomputer__GPT-JT-6B-v1-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>7.10</td>
-      <td>6.0</td>
+      <td>6</td>
       <td>6.95</td>
       <td>7.32</td>
     </tr>
@@ -30824,7 +30809,7 @@
       <td>3844</td>
       <td><a href="https://huggingface.co/PocketDoc/Dans-Instruct-CoreCurriculum-12b" target="_blank"><a target="_blank" href="https://huggingface.co/PocketDoc/Dans-Instruct-CoreCurriculum-12b" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">PocketDoc/Dans-Instruct-CoreCurriculum-12b</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/PocketDoc__Dans-Instruct-CoreCurriculum-12b-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>6.75</td>
-      <td>12.0</td>
+      <td>12</td>
       <td>2.44</td>
       <td>13.23</td>
     </tr>
@@ -32552,7 +32537,7 @@
       <td>4060</td>
       <td><a href="https://huggingface.co/togethercomputer/RedPajama-INCITE-7B-Instruct" target="_blank"><a target="_blank" href="https://huggingface.co/togethercomputer/RedPajama-INCITE-7B-Instruct" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">togethercomputer/RedPajama-INCITE-7B-Instruct</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/togethercomputer__RedPajama-INCITE-7B-Instruct-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>4.98</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>3.03</td>
       <td>7.91</td>
     </tr>
@@ -32608,7 +32593,7 @@
       <td>4067</td>
       <td><a href="https://huggingface.co/pankajmathur/orca_mini_7b" target="_blank"><a target="_blank" href="https://huggingface.co/pankajmathur/orca_mini_7b" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">pankajmathur/orca_mini_7b</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/pankajmathur__orca_mini_7b-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>4.77</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>2.73</td>
       <td>7.82</td>
     </tr>
@@ -32832,7 +32817,7 @@
       <td>4095</td>
       <td><a href="https://huggingface.co/mosaicml/mpt-7b" target="_blank"><a target="_blank" href="https://huggingface.co/mosaicml/mpt-7b" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">mosaicml/mpt-7b</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/mosaicml__mpt-7b-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>3.99</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>2.29</td>
       <td>6.55</td>
     </tr>
@@ -32928,7 +32913,7 @@
       <td>4107</td>
       <td><a href="https://huggingface.co/RWKV/rwkv-raven-14b" target="_blank"><a target="_blank" href="https://huggingface.co/RWKV/rwkv-raven-14b" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">RWKV/rwkv-raven-14b</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/RWKV__rwkv-raven-14b-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>3.71</td>
-      <td>14.0</td>
+      <td>14</td>
       <td>1.67</td>
       <td>6.76</td>
     </tr>
@@ -32936,7 +32921,7 @@
       <td>4108</td>
       <td><a href="https://huggingface.co/togethercomputer/GPT-NeoXT-Chat-Base-20B" target="_blank"><a target="_blank" href="https://huggingface.co/togethercomputer/GPT-NeoXT-Chat-Base-20B" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">togethercomputer/GPT-NeoXT-Chat-Base-20B</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/togethercomputer__GPT-NeoXT-Chat-Base-20B-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>3.70</td>
-      <td>20.0</td>
+      <td>20</td>
       <td>1.61</td>
       <td>6.83</td>
     </tr>
@@ -32944,7 +32929,7 @@
       <td>4109</td>
       <td><a href="https://huggingface.co/databricks/dolly-v1-6b" target="_blank"><a target="_blank" href="https://huggingface.co/databricks/dolly-v1-6b" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">databricks/dolly-v1-6b</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/databricks__dolly-v1-6b-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>3.68</td>
-      <td>6.0</td>
+      <td>6</td>
       <td>2.95</td>
       <td>4.78</td>
     </tr>
@@ -33000,7 +32985,7 @@
       <td>4116</td>
       <td><a href="https://huggingface.co/EleutherAI/gpt-j-6b" target="_blank"><a target="_blank" href="https://huggingface.co/EleutherAI/gpt-j-6b" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EleutherAI/gpt-j-6b</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EleutherAI__gpt-j-6b-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>3.57</td>
-      <td>6.0</td>
+      <td>6</td>
       <td>2.68</td>
       <td>4.91</td>
     </tr>
@@ -33136,7 +33121,7 @@
       <td>4133</td>
       <td><a href="https://huggingface.co/databricks/dolly-v2-12b" target="_blank"><a target="_blank" href="https://huggingface.co/databricks/dolly-v2-12b" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">databricks/dolly-v2-12b</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/databricks__dolly-v2-12b-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>3.41</td>
-      <td>12.0</td>
+      <td>12</td>
       <td>1.43</td>
       <td>6.38</td>
     </tr>
@@ -33160,7 +33145,7 @@
       <td>4136</td>
       <td><a href="https://huggingface.co/togethercomputer/RedPajama-INCITE-7B-Base" target="_blank"><a target="_blank" href="https://huggingface.co/togethercomputer/RedPajama-INCITE-7B-Base" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">togethercomputer/RedPajama-INCITE-7B-Base</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/togethercomputer__RedPajama-INCITE-7B-Base-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>3.35</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>2.19</td>
       <td>5.09</td>
     </tr>
@@ -33216,7 +33201,7 @@
       <td>4143</td>
       <td><a href="https://huggingface.co/PygmalionAI/pygmalion-6b" target="_blank"><a target="_blank" href="https://huggingface.co/PygmalionAI/pygmalion-6b" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">PygmalionAI/pygmalion-6b</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/PygmalionAI__pygmalion-6b-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>3.26</td>
-      <td>6.0</td>
+      <td>6</td>
       <td>2.04</td>
       <td>5.09</td>
     </tr>
@@ -33240,7 +33225,7 @@
       <td>4146</td>
       <td><a href="https://huggingface.co/tiiuae/falcon-7b" target="_blank"><a target="_blank" href="https://huggingface.co/tiiuae/falcon-7b" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">tiiuae/falcon-7b</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/tiiuae__falcon-7b-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>3.22</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>1.39</td>
       <td>5.96</td>
     </tr>
@@ -33280,7 +33265,7 @@
       <td>4151</td>
       <td><a href="https://huggingface.co/databricks/dolly-v2-7b" target="_blank"><a target="_blank" href="https://huggingface.co/databricks/dolly-v2-7b" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">databricks/dolly-v2-7b</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/databricks__dolly-v2-7b-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>3.18</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>1.66</td>
       <td>5.45</td>
     </tr>
@@ -33432,7 +33417,7 @@
       <td>4170</td>
       <td><a href="https://huggingface.co/tiiuae/falcon-7b-instruct" target="_blank"><a target="_blank" href="https://huggingface.co/tiiuae/falcon-7b-instruct" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">tiiuae/falcon-7b-instruct</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/tiiuae__falcon-7b-instruct-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>2.96</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>1.73</td>
       <td>4.82</td>
     </tr>
@@ -33456,7 +33441,7 @@
       <td>4173</td>
       <td><a href="https://huggingface.co/togethercomputer/RedPajama-INCITE-Chat-3B-v1" target="_blank"><a target="_blank" href="https://huggingface.co/togethercomputer/RedPajama-INCITE-Chat-3B-v1" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">togethercomputer/RedPajama-INCITE-Chat-3B-v1</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/togethercomputer__RedPajama-INCITE-Chat-3B-v1-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>2.91</td>
-      <td>3.0</td>
+      <td>3</td>
       <td>1.41</td>
       <td>5.16</td>
     </tr>
@@ -33632,7 +33617,7 @@
       <td>4195</td>
       <td><a href="https://huggingface.co/EleutherAI/pythia-12b" target="_blank"><a target="_blank" href="https://huggingface.co/EleutherAI/pythia-12b" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">EleutherAI/pythia-12b</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/EleutherAI__pythia-12b-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>2.72</td>
-      <td>12.0</td>
+      <td>12</td>
       <td>1.21</td>
       <td>4.99</td>
     </tr>
@@ -33696,7 +33681,7 @@
       <td>4203</td>
       <td><a href="https://huggingface.co/OpenAssistant/oasst-sft-1-pythia-12b" target="_blank"><a target="_blank" href="https://huggingface.co/OpenAssistant/oasst-sft-1-pythia-12b" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">OpenAssistant/oasst-sft-1-pythia-12b</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/OpenAssistant__oasst-sft-1-pythia-12b-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>2.66</td>
-      <td>12.0</td>
+      <td>12</td>
       <td>1.25</td>
       <td>4.78</td>
     </tr>
@@ -33744,7 +33729,7 @@
       <td>4209</td>
       <td><a href="https://huggingface.co/togethercomputer/RedPajama-INCITE-7B-Chat" target="_blank"><a target="_blank" href="https://huggingface.co/togethercomputer/RedPajama-INCITE-7B-Chat" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">togethercomputer/RedPajama-INCITE-7B-Chat</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/togethercomputer__RedPajama-INCITE-7B-Chat-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>2.61</td>
-      <td>7.0</td>
+      <td>7</td>
       <td>1.35</td>
       <td>4.50</td>
     </tr>
@@ -33776,7 +33761,7 @@
       <td>4213</td>
       <td><a href="https://huggingface.co/davidkim205/Rhea-72b-v0.5" target="_blank"><a target="_blank" href="https://huggingface.co/davidkim205/Rhea-72b-v0.5" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">davidkim205/Rhea-72b-v0.5</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/davidkim205__Rhea-72b-v0.5-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>2.58</td>
-      <td>72.0</td>
+      <td>72</td>
       <td>1.85</td>
       <td>3.67</td>
     </tr>
@@ -33864,7 +33849,7 @@
       <td>4224</td>
       <td><a href="https://huggingface.co/togethercomputer/RedPajama-INCITE-Instruct-3B-v1" target="_blank"><a target="_blank" href="https://huggingface.co/togethercomputer/RedPajama-INCITE-Instruct-3B-v1" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">togethercomputer/RedPajama-INCITE-Instruct-3B-v1</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/togethercomputer__RedPajama-INCITE-Instruct-3B-v1-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>2.53</td>
-      <td>3.0</td>
+      <td>3</td>
       <td>1.22</td>
       <td>4.51</td>
     </tr>
@@ -33936,7 +33921,7 @@
       <td>4233</td>
       <td><a href="https://huggingface.co/facebook/opt-30b" target="_blank"><a target="_blank" href="https://huggingface.co/facebook/opt-30b" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">facebook/opt-30b</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/facebook__opt-30b-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>2.49</td>
-      <td>30.0</td>
+      <td>30</td>
       <td>1.82</td>
       <td>3.50</td>
     </tr>
@@ -34200,7 +34185,7 @@
       <td>4266</td>
       <td><a href="https://huggingface.co/databricks/dolly-v2-3b" target="_blank"><a target="_blank" href="https://huggingface.co/databricks/dolly-v2-3b" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">databricks/dolly-v2-3b</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/databricks__dolly-v2-3b-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>2.30</td>
-      <td>3.0</td>
+      <td>3</td>
       <td>1.61</td>
       <td>3.32</td>
     </tr>
@@ -34584,7 +34569,7 @@
       <td>4314</td>
       <td><a href="https://huggingface.co/togethercomputer/RedPajama-INCITE-Base-3B-v1" target="_blank"><a target="_blank" href="https://huggingface.co/togethercomputer/RedPajama-INCITE-Base-3B-v1" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">togethercomputer/RedPajama-INCITE-Base-3B-v1</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/togethercomputer__RedPajama-INCITE-Base-3B-v1-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>2.15</td>
-      <td>3.0</td>
+      <td>3</td>
       <td>1.24</td>
       <td>3.52</td>
     </tr>
@@ -34848,7 +34833,7 @@
       <td>4347</td>
       <td><a href="https://huggingface.co/BrainWave-ML/llama3.2-3B-maths-orpo" target="_blank"><a target="_blank" href="https://huggingface.co/BrainWave-ML/llama3.2-3B-maths-orpo" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">BrainWave-ML/llama3.2-3B-maths-orpo</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/BrainWave-ML__llama3.2-3B-maths-orpo-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>2.06</td>
-      <td>3.0</td>
+      <td>3</td>
       <td>1.86</td>
       <td>2.35</td>
     </tr>
@@ -35144,7 +35129,7 @@
       <td>4384</td>
       <td><a href="https://huggingface.co/WizardLMTeam/WizardLM-13B-V1.0" target="_blank"><a target="_blank" href="https://huggingface.co/WizardLMTeam/WizardLM-13B-V1.0" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">WizardLMTeam/WizardLM-13B-V1.0</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/WizardLMTeam__WizardLM-13B-V1.0-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>1.97</td>
-      <td>13.0</td>
+      <td>13</td>
       <td>1.85</td>
       <td>2.15</td>
     </tr>
@@ -35304,7 +35289,7 @@
       <td>4404</td>
       <td><a href="https://huggingface.co/allenai/OLMo-1.7-7B-hf" target="_blank"><a target="_blank" href="https://huggingface.co/allenai/OLMo-1.7-7B-hf" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">allenai/OLMo-1.7-7B-hf</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/allenai__OLMo-1.7-7B-hf-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>1.93</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>1.37</td>
       <td>2.77</td>
     </tr>
@@ -35800,7 +35785,7 @@
       <td>4466</td>
       <td><a href="https://huggingface.co/sakhan10/quantized_open_llama_3b_v2" target="_blank"><a target="_blank" href="https://huggingface.co/sakhan10/quantized_open_llama_3b_v2" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">sakhan10/quantized_open_llama_3b_v2</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/sakhan10__quantized_open_llama_3b_v2-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>1.76</td>
-      <td>3.0</td>
+      <td>3</td>
       <td>1.06</td>
       <td>2.81</td>
     </tr>
@@ -36032,7 +36017,7 @@
       <td>4495</td>
       <td><a href="https://huggingface.co/allenai/Llama-3.1-Tulu-3-8B-RM" target="_blank"><a target="_blank" href="https://huggingface.co/allenai/Llama-3.1-Tulu-3-8B-RM" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">allenai/Llama-3.1-Tulu-3-8B-RM</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/allenai__Llama-3.1-Tulu-3-8B-RM-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>1.61</td>
-      <td>8.0</td>
+      <td>8</td>
       <td>0.91</td>
       <td>2.65</td>
     </tr>
@@ -36472,7 +36457,7 @@
       <td>4550</td>
       <td><a href="https://huggingface.co/IDEA-CCNL/Ziya-LLaMA-13B-v1" target="_blank"><a target="_blank" href="https://huggingface.co/IDEA-CCNL/Ziya-LLaMA-13B-v1" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">IDEA-CCNL/Ziya-LLaMA-13B-v1</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/IDEA-CCNL__Ziya-LLaMA-13B-v1-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>1.26</td>
-      <td>13.0</td>
+      <td>13</td>
       <td>1.12</td>
       <td>1.46</td>
     </tr>
@@ -36664,7 +36649,7 @@
       <td>4574</td>
       <td><a href="https://huggingface.co/google/umt5-base" target="_blank"><a target="_blank" href="https://huggingface.co/google/umt5-base" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">google/umt5-base</a>  <a target="_blank" href="https://huggingface.co/datasets/open-llm-leaderboard/google__umt5-base-details" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">📑</a></a></td>
       <td>0.85</td>
-      <td>-1.0</td>
+      <td>-1</td>
       <td>0.87</td>
       <td>0.81</td>
     </tr>
@@ -36689,62 +36674,63 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="row mt-4">
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header bg-light">
-                        <h5 class="mb-0">Data Download</h5>
-                    </div>
+                    <div class="card-header bg-light"><h5 class="mb-0">Data Download</h5></div>
                     <div class="card-body">
-                        <p>You can download the complete data via the following links:</p>
-                        <a href="legal_leaderboard.json" class="btn btn-outline-primary me-2">JSON Format</a>
-                        <a href="legal_leaderboard.csv" class="btn btn-outline-primary">CSV Format</a>
+                        <p>Download Legal leaderboard data:</p>
+                        <a href="legal_leaderboard.json" class="btn btn-outline-secondary me-2" download>JSON</a>
+                        <a href="legal_leaderboard.csv" class="btn btn-outline-secondary" download>CSV</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header bg-light">
-                        <h5 class="mb-0">About the Project</h5>
-                    </div>
+                    <div class="card-header bg-light"><h5 class="mb-0">Other Leaderboards</h5></div>
                     <div class="card-body">
-                        <p>ModelRank AI is an automatically updated open-source large language model leaderboard with data sourced from HuggingFace.</p>
-                        <p>This project automatically fetches the latest model evaluation data from HuggingFace daily via GitHub Actions.</p>
+                        <p>View other leaderboards:</p>
+                        <a href="index.html" class="btn btn-outline-secondary me-2 mb-2">Main Leaderboard</a>
+                        <a href="medical_leaderboard.html" class="btn btn-outline-primary me-2 mb-2">🏥 Medical</a>
+<a href="finance_leaderboard.html" class="btn btn-outline-primary mb-2">💰 Finance</a>
+
                     </div>
                 </div>
             </div>
         </div>
-        
+
         <div class="footer text-center">
             <p>© 2025 ModelRank AI - <a href="https://github.com/chenjy16/modelrank_ai/blob/main/LICENSE" target="_blank">MIT License</a></p>
         </div>
     </div>
-    
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#legal_leaderboard').DataTable({
-                "pageLength": 25,
-                "order": [[0, "asc"]],
-                "language": {
-                    "search": "Search:",
-                    "lengthMenu": "Show _MENU_ entries",
-                    "info": "Showing _START_ to _END_ of _TOTAL_ entries",
-                    "infoEmpty": "No entries available",
-                    "infoFiltered": "(filtered from _MAX_ total entries)",
-                    "paginate": {
-                        "first": "First",
-                        "last": "Last",
-                        "next": "Next",
-                        "previous": "Previous"
-                    }
+    
+<script>
+    $(document).ready(function() {
+        $('#leaderboard').DataTable({
+            "pageLength": 25,
+            "order": [[0, "asc"]], // Assuming Rank is the first column
+            "language": {
+                "search": "Search:",
+                "lengthMenu": "Show _MENU_ entries",
+                "info": "Showing _START_ to _END_ of _TOTAL_ entries",
+                "infoEmpty": "No entries available",
+                "infoFiltered": "(filtered from _MAX_ total entries)",
+                "paginate": {
+                    "first": "First",
+                    "last": "Last",
+                    "next": "Next",
+                    "previous": "Previous"
                 }
-            });
+            }
         });
-    </script>
+    });
+</script>
+
 </body>
 </html>
