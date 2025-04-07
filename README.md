@@ -12,7 +12,7 @@ This is an automatically updated open-source large language model leaderboard wi
 
 ## 🏆 ModelRank AI Leaderboard
 
-*Last updated: 2025-04-07 10:01:16 UTC*
+*Last updated: 2025-04-07 10:22:56 UTC*
 
 | Rank | Model | Avg | Params(B) | IFEval | BBH | MATH | GPQA | MUSR | MMLU-PRO |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -40,10 +40,9 @@ This is an automatically updated open-source large language model leaderboard wi
 
 [View Complete Online Leaderboard](https://chenjy16.github.io/modelrank_ai/)
 
-
 ## 🏥 Medical Domain Leaderboard
 
-*Top 10 models shown. Last updated: 2025-04-07 10:01:16 UTC*
+*Top 10 models shown. Last updated: 2025-04-07 10:22:56 UTC*
 
 | Rank | Model | Avg Score | Params(B) | MMLU-PRO | BBH | GPQA |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -62,7 +61,7 @@ This is an automatically updated open-source large language model leaderboard wi
 
 ## ⚖️ Legal Domain Leaderboard
 
-*Top 10 models shown. Last updated: 2025-04-07 10:01:16 UTC*
+*Top 10 models shown. Last updated: 2025-04-07 10:22:56 UTC*
 
 | Rank | Model | Avg Score | Params(B) | MMLU-PRO | BBH |
 | --- | --- | --- | --- | --- | --- |
@@ -81,7 +80,7 @@ This is an automatically updated open-source large language model leaderboard wi
 
 ## 💰 Finance Domain Leaderboard
 
-*Top 10 models shown. Last updated: 2025-04-07 10:01:16 UTC*
+*Top 10 models shown. Last updated: 2025-04-07 10:22:56 UTC*
 
 | Rank | Model | Avg Score | Params(B) | MATH Lvl 5 | MMLU-PRO | BBH |
 | --- | --- | --- | --- | --- | --- | --- |
