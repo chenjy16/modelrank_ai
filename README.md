@@ -42,9 +42,9 @@ This is an automatically updated open-source large language model leaderboard wi
 
 专业领域模型排行榜可通过以下链接访问：
 
-- [医疗领域模型排行榜](https://chenjy16.github.io/modelrank_ai/medical_leaderboard.html)
-- [法律领域模型排行榜](https://chenjy16.github.io/modelrank_ai/legal_leaderboard.html)
-- [金融领域模型排行榜](https://chenjy16.github.io/modelrank_ai/finance_leaderboard.html)
+- [Medical Domain Leaderboard](https://chenjy16.github.io/modelrank_ai/medical_leaderboard.html)
+- [Legal Domain Leaderboard](https://chenjy16.github.io/modelrank_ai/legal_leaderboard.html)
+- [Finance Domain Leaderboard](https://chenjy16.github.io/modelrank_ai/finance_leaderboard.html)
 
 ## 🏥 Medical Domain Leaderboard
 
