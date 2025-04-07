@@ -6,38 +6,32 @@ on:
   workflow_dispatch:  # 允许手动触发
 
 jobs:
-  update-readme:
+  update:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write  # 授予写入权限
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}  # 使用内置令牌
-
+        
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-          cache: 'pip'
-
+          
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install huggingface_hub datasets pandas python-dotenv tqdm asyncio
-
-      - name: Update README and GitHub Pages
+          pip install -r requirements.txt
+          
+      - name: Update leaderboard
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           python scripts/update_readme_standalone.py
-
-      - name: Commit and push if changed
+          
+      - name: Commit and push changes
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add README.md
-          git add docs/  # 添加 docs 目录
-          git diff --quiet && git diff --staged --quiet || git commit -m "Update leaderboard data and GitHub Pages"
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add README.md docs/
+          git diff --quiet && git diff --staged --quiet || git commit -m "Update leaderboard data [automated]"
           git push
