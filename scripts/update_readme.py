@@ -149,58 +149,46 @@ async def update_readme():
     # Read existing README
     readme_path = Path(__file__).parent.parent / "README.md"
     if not readme_path.exists():
-        # 如果README不存在，创建一个新的
+        # If README doesn't exist, create a new one
         content = "# ModelRank AI\n\nThis is an automatically updated open-source large language model leaderboard with data sourced from HuggingFace.\n\n## Project Description\n\nThis project automatically fetches the latest model evaluation data from HuggingFace daily via GitHub Actions and updates this README.\n\n"
     else:
         with open(readme_path, "r", encoding="utf-8") as f:
             content = f.read()
     
-    # 更新时间
+    # Update timestamp
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S UTC")
     
-    # 检查是否已存在主排行榜部分
+    # Check if README already has a leaderboard section
     if "## 🏆 ModelRank AI Leaderboard" in content:
-        # 使用正则表达式替换现有的排行榜部分
-        pattern = r"## 🏆 ModelRank AI Leaderboard\s*\n\s*\*Last updated:.*?\*\s*\n\s*\|.*?(?=\n\n|\Z)"
-        replacement = f"## 🏆 ModelRank AI Leaderboard\n\n*Last updated: {now}*\n\n{table}"
-        content = re.sub(pattern, replacement, content, flags=re.DOTALL)
+        # Replace existing leaderboard section
+        start_marker = "## 🏆 ModelRank AI Leaderboard"
+        end_marker = "## "  # Next section starts
+        
+        start_idx = content.find(start_marker)
+        end_idx = content.find(end_marker, start_idx + len(start_marker))
+        
+        if end_idx == -1:  # If it's the last section
+            end_idx = len(content)
+        
+        new_section = f"{start_marker}\n\n*Last updated: {now}*\n\n{table}\n\n"
+        content = content[:start_idx] + new_section + content[end_idx:]
     else:
-        # 如果不存在，添加到内容末尾
-        content += f"\n\n## 🏆 ModelRank AI Leaderboard\n\n*Last updated: {now}*\n\n{table}\n\n[View Complete Online Leaderboard](https://chenjy16.github.io/modelrank_ai/)"
+        # Add new leaderboard section
+        content += f"\n## 🏆 ModelRank AI Leaderboard\n\n*Last updated: {now}*\n\n{table}\n\n"
     
-    # 检查是否已存在领域排行榜链接部分
-    domain_links_section = "## Domain-Specific Leaderboards"
-    emoji_domain_links_section = "## 🌐 Domain-Specific Leaderboards"
+    # Add data source explanation (if it doesn't exist)
+    if "## Data Source" not in content:
+        content += "\n## Data Source\n\nData is sourced from HuggingFace.\n\n"
     
-    # 删除带有emoji的重复部分（如果存在）
-    if emoji_domain_links_section in content:
-        pattern = r"## 🌐 Domain-Specific Leaderboards\s*\n.*?(?=\n\n## |\Z)"
-        content = re.sub(pattern, "", content, flags=re.DOTALL)
-        # 清理多余的空行
-        content = re.sub(r'\n{3,}', '\n\n', content)
+    # Add license information (if it doesn't exist)
+    if "## License" not in content:
+        content += "\n## License\n\nThis project is open-sourced under the MIT License.\n"
     
-    # 检查是否需要添加领域排行榜链接部分
-    if domain_links_section not in content:
-        domain_links = f"""
-## Domain-Specific Leaderboards
-
-Domain-specific model leaderboards can be accessed via the following links:
-
-- [Medical Domain Leaderboard](https://chenjy16.github.io/modelrank_ai/medical_leaderboard.html)
-- [Legal Domain Leaderboard](https://chenjy16.github.io/modelrank_ai/legal_leaderboard.html)
-- [Finance Domain Leaderboard](https://chenjy16.github.io/modelrank_ai/finance_leaderboard.html)
-"""
-        # 在适当位置添加领域排行榜链接
-        if "## Evaluation Metrics Explanation" in content:
-            content = content.replace("## Evaluation Metrics Explanation", f"{domain_links}\n\n## Evaluation Metrics Explanation")
-        else:
-            content += f"\n\n{domain_links}"
-    
-    # 写入更新后的README
+    # Write back to README
     with open(readme_path, "w", encoding="utf-8") as f:
         f.write(content)
     
-    logger.info(f"README updated at {readme_path}")
+    logger.info(f"README updated successfully, time: {now}")
     return True
 
 if __name__ == "__main__":
