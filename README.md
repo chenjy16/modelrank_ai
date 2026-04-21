@@ -12,7 +12,7 @@ This is an automatically updated open-source large language model leaderboard wi
 
 ## 🏆 ModelRank AI Leaderboard
 
-*Last updated: 2026-04-20 02:03:31 UTC*
+*Last updated: 2026-04-21 01:59:12 UTC*
 
 | Rank | Model | Average Score | Parameters(B) | IFEval | BBH | MATH | GPQA | MUSR | MMLU-PRO |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
